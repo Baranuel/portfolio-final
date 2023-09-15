@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Home() {
 
   const createData = async () => {
-    const res = await fetch('/api/create')
+    const res = await fetch('/api/create', {method: 'POST'})
     const data = await res.json()
     console.log(data)
   }

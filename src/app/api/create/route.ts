@@ -8,14 +8,14 @@ type ResponseData = {
 
 const prisma = new PrismaClient()
  
-export async function GET(request: Request) {
+export async function POST(request: Request) {
 
-    const data = await prisma.project.create({
+    const res = await prisma.project.create({
         data: {
             title: 'Prisma is awesome',
             category: 'prisma',
             year: 2021,
         }
     })
-  return  NextResponse.json(data)
+  return  NextResponse.json(res)
 }
