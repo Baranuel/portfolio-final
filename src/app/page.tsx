@@ -10,16 +10,15 @@ export default function Home() {
   const createData = async () => {
     const res = await fetch('/api/create', {method: 'POST'})
     const data = await res.json()
-    console.log(data)
   }
 
 
   return (
-    <main className="w-full px-52 lg:px-24 md:px-12 sm:px-4 ">
+    <main className="w-full px-52 lg:px-24 md:px-12 sm:px-4 overflow-hidden max-w-[100vw] ">
       <Hero />
       <IntroSign />
       <ToolsSection />
-      <WorkSection />
+      <WorkSection /> 
     </main>
   )
 }
