@@ -7,7 +7,7 @@ import pepa from "../../../../Screenshot 2023-09-20 at 20.18.05.png";
 
 export const ProjectItem = ({ item }: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
+    console.log(item)
   return (
     <>
       <motion.div
