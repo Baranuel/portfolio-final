@@ -29,6 +29,8 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      transitionTimingFunction: {
+        'bezier': 'cubic-bezier(0.060, 0.975, 0.195, 0.985)',      },
    
     colors: {
       background: '#FAFAFA',
