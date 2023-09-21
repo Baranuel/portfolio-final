@@ -10,9 +10,7 @@ export const ProjectItem = ({ item }: any) => {
   console.log(item);
   return (
     <>
-      <motion.div
-        layout
-        layoutId="expand"
+      <div
         className={
           " w-full min-h-16  max-h-[500px]flex flex-col border-b border-primaryGrey/10 "
         }
@@ -23,8 +21,8 @@ export const ProjectItem = ({ item }: any) => {
             isOpen && ""
           } rounded-md px-2 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
         >
-          <span className="text-text sm:text-[12px]">2023</span>
-          <span className=" flex flex-1 items-center justify-start min-w-[200px] sm:min-w-0 text-[18px] sm:text-[15px] font-bold ">
+          <span className="text-text sm:text-[14px]">2023</span>
+          <span className=" flex flex-1 items-center justify-start min-w-[200px] sm:min-w-0 text-[20px] sm:text-[18px] font-bold ">
             Project Name
           </span>
           <span className=" bg-violet-400/30 text-violet-700 p-1 px-2 text-[12px] rounded-full">
@@ -60,13 +58,13 @@ export const ProjectItem = ({ item }: any) => {
                     className="rounded-xl"
                     />
                 </motion.div>
-                <span className="h-5/6 self-center bg-[#333] w-[1px]" />{" "}
+                <motion.span initial={{height:0}} animate={{height:'90%'}} transition={{delay:0.3}} className="h-5/6 self-center bg-[#333] w-[1px]" />{" "}
                 {/* HR */}
                 <div className=" flex-1 h-full flex flex-col gap-0">
                   <div className="h-fit w-full flex  gap-4 p-2">
                     {" "}
                     {/* text container */}
-                    <motion.div        initial={{x:-100,opacity:0 }} animate={{x:0, opacity:1}} transition={{delay:0.25, duration:0.2, ease:'easeIn'}}>
+                    <motion.div        initial={{scale:0,opacity:0 }} animate={{scale:1, opacity:1}} transition={{delay:0.25, duration:0.2, ease:'easeIn'}}>
                       <h1 className="text-[16px] font-semibold">CMS</h1>
                       <p className="text-[14px]">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -74,7 +72,7 @@ export const ProjectItem = ({ item }: any) => {
                         et quae? Facere, perspiciatis ullam!
                       </p>
                     </motion.div>
-                    <motion.div        initial={{x:-100,opacity:0 }} animate={{x:0, opacity:1}} transition={{delay:0.2575, duration:0.2, ease:'easeIn'}}>
+                    <motion.div        initial={{scale:0,opacity:0 }} animate={{scale:1, opacity:1}} transition={{delay:0.2575, duration:0.2, ease:'easeIn'}}>
                       <h1 className="text-[16px] font-semibold">UX</h1>
                       <p className="text-[14px]">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -89,7 +87,7 @@ export const ProjectItem = ({ item }: any) => {
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
                           return (
                               <motion.div
-                              initial={{x:200, y:200}} animate={{x:0, y:0}} transition={{delay:0.05 * index}}
+                              initial={{x:200, y:200}} animate={{x:0, y:0}} transition={{delay:0.05 * index + 0.4}}
                               key={index}
                               className="rounded-md w-10 h-10 bg-primaryGrey"
                               ></motion.div>
@@ -105,7 +103,7 @@ export const ProjectItem = ({ item }: any) => {
         </motion.div>
         {/* )}
         </AnimatePresence> */}
-      </motion.div>
+      </div>
     </>
   );
 };

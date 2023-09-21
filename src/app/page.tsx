@@ -14,11 +14,15 @@ export default function Home() {
 
 
   return (
-    <main className="w-full px-52 lg:px-24 md:px-12 sm:px-4 overflow-hidden max-w-[100vw] ">
+
+    <main className="w-full relative overflow-hidden px-52 lg:px-24 md:px-12 sm:px-4  max-w-[100vw] ">
+        <div className="absolute top-0 left-0 w-[25vw] h-[25vw] md:w-[35vw] md:h-[35vw] -translate-x-[60%] -translate-y-[50%] bg-primaryGrey z-0 rounded-full blur-[229px] md:blur-[100px]">1</div>
+      <div className="absolute top-0 right-0 w-[25vw] h-[25vw]  md:w-[35vw] md:h-[35vw] translate-x-[40%] -translate-y-[50%] bg-primaryGrey z-0 rounded-full blur-[229px] sm:blur-[100px] ">1</div>
       <Hero />
       <IntroSign />
       <ToolsSection />
       <WorkSection /> 
     </main>
+
   )
 }
