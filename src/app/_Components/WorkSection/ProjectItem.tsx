@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { TechRow } from "./TechRow";
 import { TextSection } from "./TextSection";
 import pepa from "../image.jpg";
+import { TextSectionMobile } from "./TextSectionMobile";
 
 export const ProjectItem = ({ item }: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -40,13 +41,13 @@ export const ProjectItem = ({ item }: any) => {
         >
           <AnimatePresence>
             {isOpen && (
-              <div className="p-4 sm:p-2  grid grid-cols-16 grid-rows-8 h-[350px] xl:h-[300px] gap-2 w-full overflow-hidden">
+              <div className="p-4 sm:p-1  grid grid-cols-12  sm:grid-rows-4  gap-4 sm:gap-2 grid-rows-8 h-[350px] sm:h-[300px]  w-full overflow-hidden">
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="bg-red-200 relative rounded-xl w-full  col-span-7 row-span-6 row-start-1 col-start-1  h-full"
+                  className="bg-red-200 relative rounded-xl w-full  col-span-5 row-span-6 lg:row-span-5 sm:row-span-2 sm:col-span-5  lg:row-start-3 sm:row-start-1  lg:col-span-6 row-start-1 col-start-1  h-full"
                 >
                   {" "}
                   <Image
@@ -62,23 +63,62 @@ export const ProjectItem = ({ item }: any) => {
                   initial={{ height: 0 }}
                   animate={{ height: "90%" }}
                   transition={{ delay: 0.3 }}
-                  className=" row-span-4 row-start-2  col-start-8  justify-self-center  self-center bg-[#333] w-[1px]"
+                  className=" row-span-4 row-start-2 col-start-6 lg:hidden justify-self-center  self-center bg-[#333]/30 w-[1px] lg:w-full lg:h-[1px] "
                 />
-                <div className=" col-start-9 col-span-4 row-span-4 justify-self-center row-start-1">
-                  <TextSection />
+
+                <div className=" col-start-6 lg:row-start-1 col-span-7 row-start-1 hidden sm:block">
+                  <TextSectionMobile
+                    heading="Objectives"
+                    text={[
+                      "Increase User Experience",
+                      " Create CMS system for Pizzeria",
+                    ]}
+                  />
                 </div>
 
-                <div className=" col-start-13 col-span-4 row-span-4 row-start-1">
-                  <TextSection />
+                <div className=" col-start-7 lg:col-start-1 lg:row-start-1 col-span-3 lg:col-span-6 sm:hidden sm:col-span-4 row-span-4 lg:row-span-2 row-start-1">
+                  <TextSection
+                    heading="UX"
+                    text="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+            deserunt error beatae explicabo animi, corrupti et quae? Facere,
+            perspiciatis ullam!"
+                  />
                 </div>
 
-                <div className="col-start-9 row-start-4 self-center col-span-4">
+                <div className=" col-start-10 lg:col-start-7  lg:row-start-1 col-span-4 lg:col-span-6 sm:col-span-5 sm:col-start-5 sm:row-span-3 sm:hidden row-span-4 row-start-1">
+                  <TextSection
+                    heading="CMS"
+                    text="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+            deserunt error beatae explicabo animi, corrupti et quae? Facere,
+            perspiciatis ullam!"
+                  />
+                </div>
+
+                <div className="col-start-7 lg:col-start-7 row-start-3 lg:row-start-3 sm:row-start-3 sm:col-start-1 row-span-3 sm:row-span-1 lg:self-start self-end sm:self-center  col-span-8 sm:col-span-8">
                   <TechRow />
                 </div>
 
-                <div className="col-start-9 row-start-5 col-span-4">
-                  <button className="bg-black">Click me</button>
-                </div>
+                <motion.div
+                  initial={{ x: 500 }}
+                  animate={{ x: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="col-start-7 row-start-6 lg:row-start-7 sm:row-start-4 sm:col-start-1 sm:col-span-6 row-span-1  self-start  lg:col-start-7 col-span-2 lg:col-span-3 "
+                >
+                  <button className="bg-background rounded-md text-black border border-slate-300  py-2 lg:text-[14px]  w-full">
+                    Find-out More
+                  </button>
+                </motion.div>
+
+                <motion.div
+                  initial={{ x: 500 }}
+                  animate={{ x: 0 }}
+                  transition={{ delay: 0.35 }}
+                  className="col-start-9 row-start-6 lg:row-start-7 sm:row-start-4 sm:col-start-7 row-span-1 sm:col-span-6  self-start  lg:col-start-10 col-span-2 lg:col-span-3"
+                >
+                  <button className="bg-black rounded-md text-white  py-2  lg:text-[14px] w-full">
+                    Click me
+                  </button>
+                </motion.div>
               </div>
             )}
           </AnimatePresence>
