@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
-import { TechRow } from "./TechRow";
 
-export const TextSection = ({
+export const TextSectionMobile = ({
   text,
   heading,
 }: {
-  text: string;
+  text: string[];
   heading: string;
 }) => {
   return (
@@ -14,25 +13,33 @@ export const TextSection = ({
         {" "}
         {/* text container */}
         {/* <motion.div   initial={{scale:0,opacity:0 }} animate={{scale:1, opacity:1}} transition={{delay:0.25, duration:0.2, ease:'easeIn'}}>
-        <h1 className="text-[16px] font-semibold">CMS</h1>
-        <p className="text-[14px] lg:text-[13px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Corporis deserunt error beatae explicabo animi, corrupti
-          et quae? Facere, perspiciatis ullam!
-        </p>
-      </motion.div> */}
+            <h1 className="text-[16px] font-semibold">CMS</h1>
+            <p className="text-[14px] lg:text-[13px]">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Corporis deserunt error beatae explicabo animi, corrupti
+              et quae? Facere, perspiciatis ullam!
+            </p>
+          </motion.div> */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2575, duration: 0.2, ease: "easeIn" }}
         >
           <h1 className="text-[16px] font-semibold">{heading}</h1>
-          <p className="text-[14px]  ">{text}</p>
+          <ul>
+            {text.map((item, index) => {
+              return (
+                <li key={index} className="text-[14px]   ">
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
         </motion.div>
       </div>
       {/* <div className="lg:hidden">
-        <TechRow />
-      </div> */}
+            <TechRow />
+          </div> */}
     </div>
   );
 };
