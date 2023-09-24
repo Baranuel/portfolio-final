@@ -1,28 +1,28 @@
-'use client'
-import Image from 'next/image'
-import { Hero } from './_Components/HeroSection/Hero'
-import { IntroSign } from './_Components/Intro-Sign/IntroSign'
-import { ToolsSection } from './_Components/ToolsSection/ToolsSection'
-import { WorkSection } from './_Components/WorkSection/WorkSection'
+"use client";
+import Image from "next/image";
+import { Hero } from "./_Components/HeroSection/Hero";
+import { IntroSign } from "./_Components/Intro-Sign/IntroSign";
+import { ToolsSection } from "./_Components/ToolsSection/ToolsSection";
+import { WorkSection } from "./_Components/WorkSection/WorkSection";
 
 export default function Home() {
-
   const createData = async () => {
-    const res = await fetch('/api/create', {method: 'POST'})
-    const data = await res.json()
-  }
-
+    const res = await fetch("/api/create", { method: "POST" });
+    const data = await res.json();
+  };
 
   return (
-
     <main className="w-full relative overflow-hidden px-52 2xl:px-24 lg:px-12 md:px-8 sm:px-4  max-w-[100vw] ">
-        <div className="absolute top-0 left-0 w-[25vw] h-[25vw] md:w-[35vw] md:h-[35vw] -translate-x-[60%] -translate-y-[50%] bg-primaryGrey z-0 rounded-full blur-[229px] md:blur-[100px]">1</div>
-      <div className="absolute top-0 right-0 w-[25vw] h-[25vw]  md:w-[35vw] md:h-[35vw] translate-x-[40%] -translate-y-[50%] bg-primaryGrey z-0 rounded-full blur-[229px] sm:blur-[100px] ">1</div>
+      <div className="absolute top-0 left-0 w-[25vw] h-[25vw] md:w-[35vw] md:h-[35vw] -translate-x-[60%] -translate-y-[50%] bg-primaryGrey/30 z-0 rounded-full blur-[229px] md:blur-[100px]">
+        1
+      </div>
+      <div className="absolute top-0 right-0 w-[25vw] h-[25vw]  md:w-[35vw] md:h-[35vw] translate-x-[40%] -translate-y-[50%] bg-primaryGrey/30 z-0 rounded-full blur-[229px] sm:blur-[100px] ">
+        1
+      </div>
       <Hero />
       <IntroSign />
       <ToolsSection />
-      <WorkSection /> 
+      <WorkSection />
     </main>
-
-  )
+  );
 }
