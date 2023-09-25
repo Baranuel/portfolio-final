@@ -94,7 +94,7 @@ export const ProjectItem = ({ item }: any) => {
                   />
                 </div>
 
-                <div className="col-start-7 lg:col-start-7 row-start-3 lg:row-start-3 sm:row-start-3 sm:col-start-1 row-span-3 sm:row-span-1 lg:self-start self-end sm:self-center  col-span-8 sm:col-span-8">
+                <div className="col-start-7 lg:col-start-7 row-start-4 lg:row-start-3 sm:row-start-3 sm:col-start-1 row-span-2 sm:row-span-1 lg:self-start self-end sm:self-end  col-span-12">
                   <TechRow />
                 </div>
 
@@ -102,7 +102,7 @@ export const ProjectItem = ({ item }: any) => {
                   initial={{ x: 1000 }}
                   animate={{ x: 0 }}
                   transition={{ delay: 0.35 }}
-                  className="col-start-7 row-start-6 lg:row-start-7 sm:row-start-4 sm:col-start-1 sm:col-span-6 row-span-1  self-start  lg:col-start-7 col-span-2 lg:col-span-3 "
+                  className="col-start-7 row-start-6 lg:row-start-7 sm:row-start-4 sm:col-start-1 sm:col-span-6 row-span-1  self-end sm:self-center lg:col-start-7 col-span-3 lg:col-span-3 "
                 >
                   <button className="bg-background rounded-md text-black border border-slate-300  py-2 lg:text-[14px]  w-full">
                     Find-out More
@@ -113,7 +113,7 @@ export const ProjectItem = ({ item }: any) => {
                   initial={{ x: 1000 }}
                   animate={{ x: 0 }}
                   transition={{ delay: 0.45 }}
-                  className="col-start-9 row-start-6 lg:row-start-7 sm:row-start-4 sm:col-start-7 row-span-1 sm:col-span-6  self-start  lg:col-start-10 col-span-2 lg:col-span-3"
+                  className="col-start-10 row-start-6 lg:row-start-7 sm:row-start-4 sm:col-start-7 row-span-1 sm:col-span-6   self-end sm:self-center lg:col-start-10 col-span-3 lg:col-span-3"
                 >
                   <button className="bg-black rounded-md text-white  py-2  lg:text-[14px] w-full">
                     Click me

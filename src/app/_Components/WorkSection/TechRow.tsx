@@ -5,7 +5,7 @@ export const TechRow = () => {
     <div className=" lg:p-0">
       <span className="font-semibold">Technologies:</span>
       <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map((item, index) => {
+        {[1, 2, 3, 4, 5,4,4].map((item, index) => {
           return (
             <motion.div
               initial={{ x: 200, y: 200, scale: 0 }}
