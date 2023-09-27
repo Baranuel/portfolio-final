@@ -8,7 +8,8 @@ import { TextSection } from "./TextSection";
 import pepa from "../image.jpg";
 import { TextSectionMobile } from "./TextSectionMobile";
 
-export const ProjectItem = ({ item }: any) => {
+export const ProjectItem = ({src}: any) => {
+  console.log(src)
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
@@ -51,7 +52,7 @@ export const ProjectItem = ({ item }: any) => {
                   <Image
                     priority
                     quality={100}
-                    src={"https://picsum.photos/200/300?random=4"}
+                    src={src}
                     alt="pepa"
                     layout="fill"
                     objectFit="cover"
