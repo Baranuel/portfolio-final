@@ -4,6 +4,7 @@ import { Hero } from "./_Components/HeroSection/Hero";
 import { IntroSign } from "./_Components/Intro-Sign/IntroSign";
 import { ToolsSection } from "./_Components/ToolsSection/ToolsSection";
 import { WorkSection } from "./_Components/WorkSection/WorkSection";
+import { Experience } from "./_Components/ExperienceSection/Experience";
 
 export default function Home() {
   const createData = async () => {
@@ -23,6 +24,7 @@ export default function Home() {
       <IntroSign />
       <ToolsSection />
       <WorkSection />
+      <Experience />
     </main>
   );
 }
