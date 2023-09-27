@@ -13,3 +13,8 @@ body {
   width: "100%";
   margin:0 auto;
 }
+
+
+.customFilter {
+  filter: blur('300px')
+}

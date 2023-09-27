@@ -25,11 +25,11 @@ export const TextSectionMobile = ({
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2575, duration: 0.2, ease: "easeIn" }}
         >
-          <h1 className="text-[16px] font-semibold">{heading}</h1>
-          <ul>
+          <h1 className="text-[16px] xs:font-[14px] font-semibold">{heading}</h1>
+          <ul className="list-disc">
             {text.map((item, index) => {
               return (
-                <li key={index} className="text-[14px]   ">
+                <li key={index} className="text-[14px] xs:text-[13px] ml-3  text-[#333]/80 ">
                   {item}
                 </li>
               );

@@ -12,11 +12,11 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full relative overflow-hidden px-52 2xl:px-24 lg:px-12 md:px-8 sm:px-4  max-w-[100vw] ">
-      <div className="absolute top-0 left-0 w-[25vw] h-[25vw] md:w-[35vw] md:h-[35vw] -translate-x-[60%] -translate-y-[50%] bg-primaryGrey/30 z-0 rounded-full blur-[229px] md:blur-[100px]">
+    <main className="w-full relative overflow-hidden px-52 2xl:px-24 lg:px-12 md:px-8 sm:px-4 xs:p-1 max-w-[100vw] ">
+      <div className="absolute top-0 left-0 w-[35vw] h-[25vw] md:w-[35vw] md:h-[35vw] -translate-x-[60%] -translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[429px] md:blur-[100px]">
         1
       </div>
-      <div className="absolute top-0 right-0 w-[25vw] h-[25vw]  md:w-[35vw] md:h-[35vw] translate-x-[40%] -translate-y-[50%] bg-primaryGrey/30 z-0 rounded-full blur-[229px] sm:blur-[100px] ">
+      <div className="absolute top-0 right-0 w-[35vw] h-[25vw]  md:w-[35vw] md:h-[35vw] translate-x-[40%] -translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[429px] sm:blur-[100px] ">
         1
       </div>
       <Hero />

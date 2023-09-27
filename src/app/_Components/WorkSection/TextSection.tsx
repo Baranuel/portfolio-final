@@ -27,7 +27,7 @@ export const TextSection = ({
           transition={{ delay: 0.2575, duration: 0.2, ease: "easeIn" }}
         >
           <h1 className="text-[16px] font-semibold">{heading}</h1>
-          <p className="text-[14px]  ">{text}</p>
+          <p className="text-[14px] ">{text}</p>
         </motion.div>
       </div>
       {/* <div className="lg:hidden">

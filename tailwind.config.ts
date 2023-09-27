@@ -22,6 +22,9 @@ const config: Config = {
 
       sm: { max: "639px" },
       // => @media (max-width: 639px) { ... }
+
+      xs: { max: "350px" },
+      // => @media (max-width: 639px) { ... }
     },
     extend: {
       backgroundImage: {
@@ -56,6 +59,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
 };
 export default config;
