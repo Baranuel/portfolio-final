@@ -9,7 +9,7 @@ export const Timeline = () => {
    
 <VerticalTimeline lineColor="#f4f4f5">
   <VerticalTimelineElement
-    className="vertical-timeline-element--work m-0 p-0"
+    className="vertical-timeline-element--work "
     iconStyle={{ color: "white", boxShadow:'none' }}
     iconClassName="bg-gradient-to-b from-zinc-400 to-zinc-700  z-10"
     contentArrowStyle={{ borderRight: "10px solid  #3f3f46" }}
@@ -22,7 +22,7 @@ export const Timeline = () => {
   >
     <div className="min-h-[150px] sm:min-h-[100px] p-4 sm:p-0 rounded-lg ">
         <h1 className="font-semibold text-[20px] text-black"> Web Developer </h1>
-        <span className="sm:text-[13px] text-[15px] font-medium text-[#333]/80">Company: Shapegames</span>
+        <span className="sm:text-[12px] text-[15px] font-medium text-[#333]/80">Company: Shapegames</span>
         <p className="text-black">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis nulla quae fugit officia quis, rem autem ut aut alias dolores.</p>
     </div>
   </VerticalTimelineElement>
@@ -76,7 +76,7 @@ export const Timeline = () => {
     contentArrowStyle={{ borderRight: "10px solid  #3f3f46" }}
     date="2021 - 2023"
     iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-50"
-    icon={<MdWork />}
+    icon={<FaUserGraduate />}
     intersectionObserverProps={{
         threshold: 0.75,
         triggerOnce: true

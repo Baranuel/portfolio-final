@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -12,9 +13,4 @@ body {
   background-color: #FAFAFA;
   width: "100%";
   margin:0 auto;
-}
-
-
-.customFilter {
-  filter: blur('300px')
 }

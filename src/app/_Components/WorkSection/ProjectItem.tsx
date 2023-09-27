@@ -19,9 +19,7 @@ export const ProjectItem = ({ item }: any) => {
       >
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={`${
-            isOpen && ""
-          } rounded-md px-2 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
+          className={` rounded-md px-2 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
         >
           <span className="text-text sm:text-[14px]">2023</span>
           <span className=" flex flex-1 items-center justify-start min-w-[200px] sm:min-w-0 text-[20px] sm:text-[18px] font-bold ">
@@ -37,7 +35,7 @@ export const ProjectItem = ({ item }: any) => {
         <motion.div
           className={` bg-gradient-to-b from-transparent overflow-hidden to-zinc-100/30 h-auto ${
             !isOpen ? "max-h-0" : "max-h-[400px]"
-          } transition-all duration-300 bezier `}
+          } transition-all duration-300  `}
         >
           <AnimatePresence>
             {isOpen && (
@@ -51,7 +49,9 @@ export const ProjectItem = ({ item }: any) => {
                 >
                   {" "}
                   <Image
-                    src={""}
+                    priority
+                    quality={100}
+                    src={"https://picsum.photos/200/300?random=4"}
                     alt="pepa"
                     layout="fill"
                     objectFit="cover"
