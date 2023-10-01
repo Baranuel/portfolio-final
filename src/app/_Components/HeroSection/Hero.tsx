@@ -10,7 +10,7 @@ export const Hero = () => {
         {heroText}
       </div>
      </div>
-      <p className=" z-10 text-sectionSubtitle text-center  text-primaryGrey animate-appear_2 opacity-0 ">
+      <p className=" z-10 text-sectionSubtitle sm:text-[18px] text-center  text-primaryGrey animate-appear_2 opacity-0 ">
         {" "}
         A passionate developer trying to bridge the gap between meaningful and
         interesting

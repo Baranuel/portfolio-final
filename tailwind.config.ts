@@ -31,8 +31,16 @@ const config: Config = {
         appear: {
           '0%': { opacity: "0", transform:"translateY(50px)" },
           '100%': { opacity:"1" , transform:"translateY(0px)"},
+        },
+        signal: {
+          '0%': { alignSelf:'start', height:"0%" },
+          '50%': { alignSelf:'start', height:"100%"},
+          '60%': { alignSelf:'end', height:"100%"},
+          '95%': { alignSelf:'end', height:"0%"},
+          '100%': { alignSelf:'start', height:"0%"},
         }},
         animation: {
+          signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
           appear_1: 'appear 1s ease-in-out forwards',
           appear_2: 'appear 1s ease-in-out 0.2s forwards',
           appear_3: 'appear 1s ease-in-out 0.3s forwards',
@@ -52,6 +60,12 @@ const config: Config = {
 
         // Complex site-specific column configuration
         footer: "200px minmax(900px, 1fr) 100px",
+      },
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(1,255, 255, 0.35)",
+          "0 0px 65px rgba(25, 255,255, 0.2)"
+        ]
       },
 
       colors: {

@@ -7,10 +7,7 @@ import { WorkSection } from "./_Components/WorkSection/WorkSection";
 import { Experience } from "./_Components/ExperienceSection/Experience";
 
 export default function Home() {
-  const createData = async () => {
-    const res = await fetch("/api/create", { method: "POST" });
-    const data = await res.json();
-  };
+
 
   return (
     <main className="w-full relative overflow-hidden px-52 2xl:px-24 lg:px-12 md:px-8 sm:px-4 xs:p-1 max-w-[100vw] ">

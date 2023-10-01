@@ -5,11 +5,9 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { TechRow } from "./TechRow";
 import { TextSection } from "./TextSection";
-import pepa from "../image.jpg";
 import { TextSectionMobile } from "./TextSectionMobile";
 
 export const ProjectItem = ({src}: any) => {
-  console.log(src)
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
@@ -20,13 +18,13 @@ export const ProjectItem = ({src}: any) => {
       >
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={` rounded-md px-2 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
+          className={` rounded-md px-2 sm:px-0 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
         >
           <span className="text-text sm:text-[14px]">2023</span>
           <span className=" flex flex-1 items-center justify-start min-w-[200px] sm:min-w-0 text-[20px] sm:text-[18px] font-bold ">
             Project Name
           </span>
-          <span className=" bg-violet-400/30 text-violet-700 p-1 px-2 text-[12px] rounded-full">
+          <span className=" bg-zinc-300/30 text-zinc-700 p-1 px-2 text-[12px] rounded-md">
             category
           </span>
         </div>
@@ -54,8 +52,7 @@ export const ProjectItem = ({src}: any) => {
                     quality={100}
                     src={src}
                     alt="pepa"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     className="rounded-xl"
                   />
                 </motion.div>

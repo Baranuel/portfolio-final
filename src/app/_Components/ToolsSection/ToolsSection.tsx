@@ -1,12 +1,44 @@
+
+import Image from 'next/image'
+import NextJSIcon from '../../../../public/nextdotjs.svg'
+import TailwindIcon from '../../../../public/tailwindcss.svg'
+import JavaScriptIcon from '../../../../public/javascript.svg'
+import TypeScriptIcon from '../../../../public/typescript.svg'
+import VercelIcon from '../../../../public/vercel.svg'
+import FramerIcon from '../../../../public/framer.svg'
+import ReactQueryIcon from '../../../../public/reactquery.svg'
+import ReactHookFormIcon from '../../../../public/reacthookform.svg'
+
+
+// create an array with all the icons but they must be an object with the source and the name 
+
+const icons = [
+    {src: NextJSIcon, name: 'NextJS'},
+    {src: TailwindIcon, name: 'Tailwind'},
+    {src: ReactQueryIcon, name: 'React Query'},
+    {src: ReactHookFormIcon, name: 'Hook Form'},
+    {src: JavaScriptIcon, name: 'Java-Script'},
+    {src: TypeScriptIcon, name: 'Type-Script'},
+    {src: VercelIcon, name: 'Vercel'},
+    {src: FramerIcon, name: 'Framer'},
+]
+
 export const ToolsSection = ( ) => {
 
-    return <section className="w-full min-h-[700px] my-[100px] flex flex-col gap-6 items-center justify-center">
-        <h1 className="text-sectionTitle font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">Tools</h1>
-        <p className="text-sectionSubtitle text-primaryGrey/80 sm:text-center">Collection of tool I use every day to make web applications useable and intuitive</p>
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-1">
+    return <section className="w-full min-h-[700px] my-[100px] flex flex-col gap-3 items-center justify-center">
+        <h1 className="text-sectionTitle leading-[3rem]   font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">Tools</h1>
+        <p className="text-sectionSubtitle sm:text-[18px] text-primaryGrey/80 sm:text-center">Collection of tool I use every day to make web applications useable and intuitive</p>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-3">
 
-        {[1,2,3,4,5,6,7,8,9,10].map((item,index) => {
-            return <div key={index} className="rounded-md w-20 h-20 sm:w-14 sm:h-14 bg-primaryGrey"></div>
+        {icons.map((item,index) => {
+            return <div key={index} className="  flex flex-col items-center justify-center gap-2">
+                <div className='rounded-md relative flex flex-col gap-1 items-center justify-center border border-slate-100 shadow-lg w-20 h-20 sm:w-14 sm:h-14 '>
+                    <div className='relative w-3/5 h-3/5 sm:w-2/3 sm:h-2/3'>
+                <Image src={item.src} alt="nextjs" fill />
+                    </div>
+                </div>
+                <p className="text-black/70 text-center text-sm sm:text-xs text-medium ">{item.name}</p>
+            </div>
         })}
         </div>
     </section>
