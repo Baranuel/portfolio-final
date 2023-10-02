@@ -25,14 +25,14 @@ const icons = [
 
 export const ToolsSection = ( ) => {
 
-    return <section className="w-full min-h-[700px] my-[100px] flex flex-col gap-3 items-center justify-center">
+    return <section className="w-full min-h-[700px] my-[75px] flex flex-col gap-3 items-center justify-center">
         <h1 className="text-sectionTitle leading-[3rem]   font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">Tools</h1>
         <p className="text-sectionSubtitle sm:text-[18px] text-primaryGrey/80 sm:text-center">Collection of tool I use every day to make web applications useable and intuitive</p>
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-3">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-5 sm:gap-3">
 
         {icons.map((item,index) => {
             return <div key={index} className="  flex flex-col items-center justify-center gap-2">
-                <div className='rounded-md relative flex flex-col gap-1 items-center justify-center border border-slate-100 shadow-lg w-20 h-20 sm:w-14 sm:h-14 '>
+                <div className='rounded-lg relative flex flex-col gap-1 items-center justify-center border border-slate-100 shadow-md w-20 h-20 sm:w-14 sm:h-14 '>
                     <div className='relative w-3/5 h-3/5 sm:w-2/3 sm:h-2/3'>
                 <Image src={item.src} alt="nextjs" fill />
                     </div>

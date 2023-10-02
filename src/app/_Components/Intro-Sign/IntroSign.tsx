@@ -5,9 +5,9 @@ export const IntroSign = () => {
   return (
     <section className="flex flex-col mb-44 items-center justify-center w-full ">
      
-      <div className="h-52 w-[2px] my-2 mb-6 relative flex z-20 border-none  bg-primaryGrey/50 animate-appear_3  ">
-        <div className=" absolute z-0 bg-gradient-to-b  from-violet-700 to-red-800 w-full animate-signal"></div>
-        <div className=" absolute z-10 bg-gradient-to-b  from-background via-transparent to-background w-full h-full "></div>
+      <div className="h-52 w-[2px] my-2 mb-6 relative overflow-hidden flex  z-20 border-none  bg-primaryGrey/20 animate-appear_3  ">
+        <div className=" absolute  z-0 bg-gradient-to-b  from-violet-700 to-red-800 w-full h-full animate-signal"></div>
+        <div className=" absolute  z-10 bg-gradient-to-b  from-background via-transparent to-background w-full h-full "></div>
       </div>
       
       <div className=" relative max-w-[500px] h-fit  bg-gradient-to-t  -translate-y-2 flex flex-col gap-2 justify-center items-center border-primaryBlack/30  rounded-xl p-1">

@@ -21,6 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
       <Navigation />
         {children}
+        <footer className='bg-stone-950 min-h-[15vh]  border-t-[1px] border-stone-700 flex items-center justify-center'>
+        <span className='text-stone-300'>Designed and Developed by Samuel Baran </span>
+        </footer>
         </body>
     </html>
   )

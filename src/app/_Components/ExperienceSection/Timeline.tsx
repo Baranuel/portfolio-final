@@ -31,7 +31,7 @@ export const Timeline = () => {
   <VerticalTimelineElement
     className="vertical-timeline-element--work"
     iconStyle={{ color: "#3f3f46", boxShadow:'none' }}
-    iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-50"
+    iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-10"
     contentArrowStyle={{ borderRight: "10px solid  #3f3f46" }}
     date="2023 - 2024"
     icon={<FaUserGraduate />}
@@ -53,7 +53,7 @@ export const Timeline = () => {
     className="vertical-timeline-element--work"
     contentArrowStyle={{ borderRight: "10px solid  #3f3f46" }}
     iconStyle={{ color: "#3f3f46", boxShadow:'none' }}
-    iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-50"
+    iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-10"
     icon={<MdDesignServices />}
     date="2021 January - April"
     intersectionObserverProps={{
@@ -78,7 +78,7 @@ export const Timeline = () => {
     iconStyle={{ color: "#3f3f46", boxShadow:'none' }}
     contentArrowStyle={{ borderRight: "10px solid  #3f3f46" }}
     date="2021 - 2023"
-    iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-50"
+    iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-10"
     icon={<FaUserGraduate />}
     intersectionObserverProps={{
         threshold: 0.75,

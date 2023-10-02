@@ -32,15 +32,19 @@ const config: Config = {
           '0%': { opacity: "0", transform:"translateY(50px)" },
           '100%': { opacity:"1" , transform:"translateY(0px)"},
         },
+        iconPing: {
+         
+            '75%': { transform: 'scale(2)', opacity: '0'},
+            '800%': { transform: 'scale(1)', opacity: '1'}
+        },
         signal: {
-          '0%': { alignSelf:'start', height:"0%" },
-          '50%': { alignSelf:'start', height:"100%"},
-          '60%': { alignSelf:'end', height:"100%"},
-          '95%': { alignSelf:'end', height:"0%"},
-          '100%': { alignSelf:'start', height:"0%"},
+          '0%': { alignSelf:'start', transform:'translateY(-100%)'},
+          '50%': { alignSelf:'start', transform:'translateY(0%)'},
+          '100%': { alignSelf:'end', transform:'translateY(100%)'},
         }},
         animation: {
           signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
+          icon_ping: 'iconPing 0.8s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
           appear_1: 'appear 1s ease-in-out forwards',
           appear_2: 'appear 1s ease-in-out 0.2s forwards',
           appear_3: 'appear 1s ease-in-out 0.3s forwards',

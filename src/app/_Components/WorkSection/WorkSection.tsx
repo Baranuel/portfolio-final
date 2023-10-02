@@ -3,7 +3,7 @@ import { ProjectList } from "./ProjectList";
 
 export const WorkSection = () => {
   return (
-    <section className="w-full relative min-h-[700px] h-fit my-[100px] flex flex-col gap-3 items-center justify-center">
+    <section className="w-full relative min-h-[700px] h-fit my-[75px] flex flex-col gap-3 items-center justify-center">
       <div className="absolute top-0 left-0 w-[20vw] h-[20vw] md:w-[35vw] md:h-[35vw] -translate-x-[50%] translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[260px] md:blur-[60px]">
         1
       </div>
