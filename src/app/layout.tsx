@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navigation } from './_Components/Navigation/Navigation'
+import ReactQueryProvider from './Providers/ReactQueryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +21,7 @@ export default function RootLayout({
   
       <body className={inter.className}>
       <Navigation />
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
         <footer className='bg-stone-950 min-h-[15vh]  border-t-[1px] border-stone-700 flex items-center justify-center'>
         <span className='text-stone-300'>Designed and Developed by Samuel Baran </span>
         </footer>

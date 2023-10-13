@@ -16,3 +16,16 @@ model Project {
   category  String
   year     Int
 }
+
+model Endorsement {
+  id String @default(cuid()) @id
+  amount Int @default(0)
+  icon EndorsementIcon
+}
+
+
+enum EndorsementIcon {
+  Hearth
+  Trash
+  Inspire
+}

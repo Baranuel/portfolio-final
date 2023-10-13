@@ -55,7 +55,7 @@ export const Timeline = () => {
     iconStyle={{ color: "#3f3f46", boxShadow:'none' }}
     iconClassName="bg-gradient-to-t from-zinc-100 to-white  z-10"
     icon={<MdDesignServices />}
-    date="2021 January - April"
+    date="2023 January - April"
     intersectionObserverProps={{
         threshold: 0.75,
         triggerOnce: true

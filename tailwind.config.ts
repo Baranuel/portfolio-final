@@ -34,17 +34,18 @@ const config: Config = {
         },
         iconPing: {
          
-            '75%': { transform: 'scale(2)', opacity: '0'},
-            '800%': { transform: 'scale(1)', opacity: '1'}
+            '25%': { transform: 'scale(2)', opacity: '0.45'},
+            '80%': { transform: 'scale(1)', opacity: '1'}
         },
         signal: {
-          '0%': { alignSelf:'start', transform:'translateY(-100%)'},
-          '50%': { alignSelf:'start', transform:'translateY(0%)'},
+          '0%': { alignSelf:'start',  transform:'translateY(-200%)',},
+          '50%': { alignSelf:'start', transform:'translateY(-100%)',},
+          '70%': { alignSelf:'start', transform:'translateY(0%)',},
           '100%': { alignSelf:'end', transform:'translateY(100%)'},
         }},
         animation: {
-          signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
-          icon_ping: 'iconPing 0.8s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
+          signal: 'signal 3s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
+          icon_ping: 'iconPing 1.5s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
           appear_1: 'appear 1s ease-in-out forwards',
           appear_2: 'appear 1s ease-in-out 0.2s forwards',
           appear_3: 'appear 1s ease-in-out 0.3s forwards',

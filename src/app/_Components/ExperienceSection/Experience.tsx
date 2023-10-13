@@ -1,3 +1,4 @@
+'use client'
 import dynamic from "next/dynamic";
 const DynamicTimeline = dynamic(() => 
   import('./Timeline').then((mod) => mod.Timeline),
