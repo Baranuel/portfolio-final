@@ -1,4 +1,4 @@
-import {  Project } from "@prisma/client";
+
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../axios/axios-instance";
 import { ProjectWithObjectives } from "../../../prisma/types";
@@ -6,7 +6,7 @@ import { ProjectWithObjectives } from "../../../prisma/types";
 
 export const useGetProjects = () => {
 
-    return useQuery<ProjectWithObjectives[], Error>(
+    return useQuery<ProjectWithObjectives[]>(
         ['projects'],
         async () => {
           try {

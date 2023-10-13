@@ -1,7 +1,7 @@
 
 import { NextResponse } from 'next/server'
 import { prisma } from '../../../../lib/prisma'
-import { NextApiRequest } from 'next'
+
 
 
 export async function GET(request: Request) {
