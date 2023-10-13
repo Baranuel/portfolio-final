@@ -4,5 +4,5 @@ const baseURL = process.env.NODE_ENV === 'production' ? 'https://portfolio-final
 
 export const axiosInstance:AxiosInstance = axios.create({
     baseURL: baseURL,
-    timeout: 10000,
+    timeout: 20000,
   });
