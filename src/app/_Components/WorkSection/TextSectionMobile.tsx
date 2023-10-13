@@ -8,7 +8,7 @@ export const TextSectionMobile = ({
   heading: string;
 }) => {
   return (
-    <div className=" flex-1 h-full flex flex-col gap-0 ">
+    <div className=" flex-1 h-full flex flex-col gap-0 ml-4 ">
       <div className="h-fit w-full flex  gap-4">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}

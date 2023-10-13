@@ -1,15 +1,8 @@
 'use client'
 
-
-import axios from 'axios'
 import { ContactForm } from './ContactForm'
-import { Endorsement as EndorsementType } from '@prisma/client'
 import { Endorsement } from './Endorsement'
-import { useQuery } from '@tanstack/react-query';
 import { useGetEndorsements } from '@/app/hooks/use-get-endorsements'
-
-
-
 
 
 export default function ContactSection (){

@@ -1,7 +1,19 @@
-'use client'
-import { ProjectList } from "./ProjectList";
 
-export const WorkSection = () => {
+import { ProjectList } from "./ProjectList";
+import { axiosInstance } from "@/app/axios/axios-instance";
+import { Prisma, Project } from "@prisma/client";
+
+type ProjectWithObjectives = Prisma.ProjectGetPayload<{
+  include: { objectives: true }
+}>
+
+const getProjects = async () => {
+  const res = await axiosInstance.get<ProjectWithObjectives[]>("projects");
+  return res.data;
+}
+
+export const WorkSection = async () => {
+  const data = await getProjects()
   return (
     <section className="w-full relative min-h-[700px] h-fit my-[75px] flex flex-col gap-3 items-center justify-center">
       <div className="absolute top-0 left-0 w-[20vw] h-[20vw] md:w-[35vw] md:h-[35vw] -translate-x-[50%] translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[260px] md:blur-[60px]">
@@ -17,7 +29,7 @@ export const WorkSection = () => {
         All the Projects I have worked on so far.
       </p>
       <div className=" relative z-10 w-full  max-w-[1500px]  px-24 2xl:px-10 xl:px-4 sm:px-0  flex flex-col items-center justify-center ">
-        <ProjectList items={[1, 2, 3, 4, 5, 6]} />
+        <ProjectList projects={data} />
       </div>
     </section>
   );

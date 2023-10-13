@@ -15,6 +15,17 @@ model Project {
   title     String
   category  String
   year     Int
+  image     String     @default("")
+  technologies String[]
+  objectives Objective[] 
+}
+
+model Objective {
+  id String @default(cuid()) @id
+  title String
+  description String
+  project Project @relation(fields: [projectId], references: [id])
+  projectId String
 }
 
 model Endorsement {

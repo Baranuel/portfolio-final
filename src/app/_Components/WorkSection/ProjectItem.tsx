@@ -6,9 +6,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { TechRow } from "./TechRow";
 import { TextSection } from "./TextSection";
 import { TextSectionMobile } from "./TextSectionMobile";
+import { Prisma, Project } from "@prisma/client";
+import { ProjectWithObjectives } from "../../../../prisma/types";
 
-export const ProjectItem = ({src}: any) => {
+
+type ProjectItemProps = {
+  project: ProjectWithObjectives;
+};
+
+export const ProjectItem = ({ project}: ProjectItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const {objectives, technologies} = project
   return (
     <>
       <div
@@ -20,12 +29,12 @@ export const ProjectItem = ({src}: any) => {
           onClick={() => setIsOpen(!isOpen)}
           className={` rounded-md px-2 sm:px-0 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
         >
-          <span className="text-text sm:text-[14px]">2023</span>
+          <span className="text-text sm:text-[14px]">{project.year}</span>
           <span className=" flex flex-1 items-center justify-start min-w-[200px] sm:min-w-0 text-[20px] sm:text-[18px] font-bold ">
-            Project Name
+            {project.title}
           </span>
           <span className=" bg-zinc-300/30 text-zinc-700 p-1 px-2 text-[12px] rounded-md">
-            category
+            {project.category}
           </span>
         </div>
 
@@ -44,16 +53,17 @@ export const ProjectItem = ({src}: any) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="bg-red-200 relative rounded-xl w-full  col-span-5 row-span-6 lg:row-span-5 sm:row-span-2 sm:col-span-5 xs:row-span-1  lg:row-start-3 sm:row-start-1  lg:col-span-6 row-start-1 col-start-1  h-full"
+                  className="bg-red-200 relative rounded-xl w-full  col-span-5 row-span-6 lg:row-span-5 sm:row-span-2 sm:col-span-6 xs:row-span-1  lg:row-start-3 sm:row-start-1  lg:col-span-6 row-start-1 col-start-1  h-full"
                 >
                   {" "}
                   <Image
                     priority
                     quality={100}
-                    src={src}
+                    src={project.image}
                     alt="pepa"
                     fill
-                    className="rounded-xl"
+                    sizes='100px 100px'
+                    className="rounded-xl object-cover"
                   />
                 </motion.div>
                 {/* Image */}
@@ -64,36 +74,32 @@ export const ProjectItem = ({src}: any) => {
                   className=" row-span-4 row-start-2 col-start-6 lg:hidden justify-self-center  self-center bg-[#333]/30 w-[1px] lg:w-full lg:h-[1px] "
                 />
 
-                <div className=" col-start-6 lg:row-start-1 col-span-7 row-start-1 xs:row-span-1 hidden sm:block">
+                <div className=" col-start-7 lg:row-start-1 col-span-7 row-start-1 xs:row-span-1 hidden sm:block">
                   <TextSectionMobile
                     heading="Objectives"
                     text={[
-                      "Increase User Experience",
-                      " Create CMS system for Pizzeria",
+                      objectives[0].title,
+                      objectives[1].title,
                     ]}
                   />
                 </div>
 
                 <div className=" col-start-7 lg:col-start-1 lg:row-start-1 col-span-3 lg:col-span-6 sm:hidden sm:col-span-4 row-span-4 lg:row-span-2 row-start-1">
                   <TextSection
-                    heading="UX"
-                    text="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            deserunt error beatae explicabo animi, corrupti et quae? Facere,
-            perspiciatis ullam!"
+                    heading={objectives[0].title}
+                    text={objectives[0].description}
                   />
                 </div>
 
                 <div className=" col-start-10 lg:col-start-7  lg:row-start-1 col-span-4 lg:col-span-6 sm:col-span-5 sm:col-start-5 sm:row-span-3 sm:hidden row-span-4 row-start-1">
                   <TextSection
-                    heading="CMS"
-                    text="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            deserunt error beatae explicabo animi, corrupti et quae? Facere,
-            perspiciatis ullam!"
+                    heading={objectives[1].title}
+                    text={objectives[1].description}
                   />
                 </div>
 
                 <div className="col-start-7 lg:col-start-7 row-start-4 lg:row-start-3 sm:row-start-3 xs:row-start-2 sm:col-start-1 row-span-2 sm:row-span-1  lg:self-start self-end sm:self-end  col-span-12">
-                  <TechRow />
+                  <TechRow technologies={technologies} />
                 </div>
 
                 <motion.div

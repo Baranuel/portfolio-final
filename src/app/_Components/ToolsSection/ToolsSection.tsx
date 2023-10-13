@@ -32,7 +32,7 @@ export const ToolsSection = ( ) => {
 
         {icons.map((item,index) => {
             return <div key={index} className="  flex flex-col items-center justify-center gap-2">
-                <div className='rounded-lg relative flex flex-col gap-1 items-center justify-center border border-slate-100 shadow-md w-20 h-20 sm:w-14 sm:h-14 '>
+                <div className='rounded-lg relative flex flex-col gap-1 items-center justify-center border border-slate-100 shadow-md w-20 h-20 sm:w-16 sm:h-16 '>
                     <div className='relative w-3/5 h-3/5 sm:w-2/3 sm:h-2/3'>
                 <Image src={item.src} alt="nextjs" fill />
                     </div>

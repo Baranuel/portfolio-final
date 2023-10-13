@@ -1,13 +1,21 @@
 
 import { ProjectItem } from "./ProjectItem"
-import Next from '../../../../public/next.svg'
 
-export const ProjectList = ({items}:{items:number[]}) => {
+import { Prisma, Project } from "@prisma/client"
+import { ProjectWithObjectives } from "../../../../prisma/types"
+
+
+
+type ProjectListProps = {
+    projects: ProjectWithObjectives[] | undefined
+}
+
+export const ProjectList = ({projects}: ProjectListProps) => {
 
 return (
     <>
-        {items.map((item:any,index:number) => {
-            return <ProjectItem src={Next} key={index}/>
+        {projects?.map((project,index:number) => {
+            return <ProjectItem project={project} key={index}/>
         } )}
     </>
 )
