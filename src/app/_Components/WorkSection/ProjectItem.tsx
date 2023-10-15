@@ -52,11 +52,11 @@ export const ProjectItem = ({ project}: ProjectItemProps) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="bg-red-200 relative rounded-xl w-full  col-span-5 row-span-6 lg:row-span-5 sm:row-span-2 sm:col-span-6 xs:row-span-1  lg:row-start-3 sm:row-start-1  lg:col-span-6 row-start-1 col-start-1  h-full"
+                  className="bg-gray-200 relative rounded-xl w-full  col-span-5 row-span-6 lg:row-span-5 sm:row-span-2 sm:col-span-6 xs:row-span-1  lg:row-start-3 sm:row-start-1  lg:col-span-6 row-start-1 col-start-1  h-full"
                 >
                   {" "}
                   <Image
-                    priority
+                    loading="eager"
                     quality={100}
                     src={image}
                     alt={project.title}
