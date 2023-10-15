@@ -87,7 +87,7 @@ export const Endorsement = ({ items }: EndorsementProps) => {
                       onClick={() => updateEndorsementHandler(item)}
                       className="bg-stone-950 h-[75px] w-[75px]  sm:h-[60px] sm:w-[60px]  rounded-md flex flex-col gap-1 items-center justify-center  text-stone-200 "
                     >
-                      <div className="relative  flex  items-center justify-center  w-1/2 h-1/2 sm:w-5/6 sm:h-5/6 hover:cursor-pointer">
+                      <div className="relative  flex  items-center justify-center  w-2/3 h-2/3 sm:w-full sm:h-full hover:cursor-pointer">
                       {isChecked ? 
                       <Image src={ checkedIconsMap[item.icon] } alt={item.icon} fill className="animate-icon_ping " /> :
                       <Image src={ iconsMap[item.icon] } alt={item.icon} fill /> 

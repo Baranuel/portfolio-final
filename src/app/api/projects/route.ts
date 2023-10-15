@@ -8,6 +8,9 @@ type ResponseData = {
 
 export async function GET (request: Request) {
   const projectsWithObjectives = await prisma.project.findMany({
+    orderBy: {
+      year: 'desc'
+    },
     include: {
       objectives: true,
     },

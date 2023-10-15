@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { TechRow } from "./TechRow";
 import { TextSection } from "./TextSection";
 import { TextSectionMobile } from "./TextSectionMobile";
-import { Prisma, Project } from "@prisma/client";
 import { ProjectWithObjectives } from "../../../../prisma/types";
 
 
@@ -17,7 +16,7 @@ type ProjectItemProps = {
 export const ProjectItem = ({ project}: ProjectItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const {objectives, technologies} = project
+  const {objectives, technologies, image} = project
   return (
     <>
       <div
@@ -59,8 +58,8 @@ export const ProjectItem = ({ project}: ProjectItemProps) => {
                   <Image
                     priority
                     quality={100}
-                    src={project.image}
-                    alt="pepa"
+                    src={image}
+                    alt={project.title}
                     fill
                     sizes='100px 100px'
                     className="rounded-xl object-cover"

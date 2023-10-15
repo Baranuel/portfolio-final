@@ -8,6 +8,7 @@ import TypeScriptIcon from '../../../../public/typescript.svg'
 import VercelIcon from '../../../../public/vercel.svg'
 import FramerIcon from '../../../../public/framer.svg'
 import ReactQueryIcon from '../../../../public/reactquery.svg'
+import MongoDBIcon from '../../../../public/mongodb.svg'
 import ReactHookFormIcon from '../../../../public/reacthookform.svg'
 import ReactIcon from '../../../../public/react.svg'
 
@@ -19,6 +20,7 @@ const icons = {
   NextJs: NextJSIcon,
   TailwindCss: TailwindIcon,
   React: ReactIcon,
+  MongoDB: MongoDBIcon,
   reactHookForm: ReactHookFormIcon,
   javaScript: JavaScriptIcon,
   TypeScript: TypeScriptIcon,
