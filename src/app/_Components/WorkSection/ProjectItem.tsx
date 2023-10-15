@@ -11,9 +11,11 @@ import { ProjectWithObjectives } from "../../../../prisma/types";
 
 type ProjectItemProps = {
   project: ProjectWithObjectives;
+  handlePreviewProject: (project: ProjectWithObjectives) => void
+
 };
 
-export const ProjectItem = ({ project}: ProjectItemProps) => {
+export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const {objectives, technologies, image} = project
@@ -118,7 +120,7 @@ export const ProjectItem = ({ project}: ProjectItemProps) => {
                   transition={{ delay: 0.45 }}
                   className="col-start-10 row-start-6 lg:row-start-7 sm:row-start-4 xs:row-start-3 sm:col-start-7 row-span-1 sm:col-span-6   self-end sm:self-center lg:col-start-10 col-span-3 lg:col-span-3"
                 >
-                  <button className="bg-black rounded-md text-white  py-2  lg:text-[14px] w-full">
+                  <button onClick={() => handlePreviewProject(project)} className="bg-black rounded-md text-white  py-2  lg:text-[14px] w-full">
                     Click me
                   </button>
                 </motion.div>

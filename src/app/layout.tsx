@@ -3,6 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navigation } from './_Components/Navigation/Navigation'
 import ReactQueryProvider from './Providers/ReactQueryProvider'
+import { ProjectPreviewOutPortal } from './_Components/WorkSection/ProjectPreviewOUtPortal'
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
   
       <body className={inter.className}>
+        <ProjectPreviewOutPortal />
       <Navigation />
         <ReactQueryProvider>{children}</ReactQueryProvider>
         <footer className='bg-stone-950 min-h-[15vh]  border-t-[1px] border-stone-700 flex items-center justify-center'>

@@ -3,9 +3,9 @@ export const IntroSign = () => {
     
     const pinHead = `after:content-[''] after:bottom-0 after:right-0 after:translate-x-[50%] after:z-10 after:absolute after:h-4 after:w-4 after:rounded-full after:bg-gradient-to-t after:from-primaryBlack after:from-50% after:via-primaryBlack after:via-50% after:to-background/70 after:to-100%"`
   return (
-    <section className="flex flex-col mb-44 items-center justify-center w-full ">
+    <section className="flex relative flex-col items-center justify-center  min-h-[500px]  w-full ">
      
-      <div className="h-52 w-[2px] my-2 mb-6 relative overflow-hidden flex  z-20 border-none  bg-primaryGrey/20 animate-appear_3  ">
+      <div className="h-44 w-[2px] my-2 mb-6 absolute -top-8  overflow-hidden flex  z-10 border-none  bg-primaryGrey/20 animate-appear_3  ">
         <div className=" z-0 bg-gradient-to-b  from-violet-700 to-red-800 w-full h-full animate-signal"></div>
         <div className=" absolute  z-10 bg-gradient-to-b  from-background via-transparent to-background w-full h-full "></div>
       </div>

@@ -16,7 +16,7 @@ export const revalidate = 10
 export const WorkSection = async () => {
   const data = await getProjects()
   return (
-    <section className="w-full relative min-h-[700px] h-fit my-[75px] flex flex-col gap-3 items-center justify-center">
+    <section className="w-full relative min-h-[500px] h-fit my-[25px]  flex flex-col gap-3 items-center justify-center">
       <div className="absolute top-0 left-0 w-[20vw] h-[20vw] md:w-[35vw] md:h-[35vw] -translate-x-[50%] translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[260px] md:blur-[60px]">
         1
       </div>
@@ -29,7 +29,7 @@ export const WorkSection = async () => {
       <p className="text-sectionSubtitle sm:text-[18px] text-primaryGrey/80 text-center">
         All the Projects I have worked on so far.
       </p>
-      <div className=" relative z-10 w-full  max-w-[1500px]  px-24 2xl:px-10 xl:px-4 sm:px-0  flex flex-col items-center justify-center ">
+      <div className=" relative z-10 w-full  max-w-[1500px] mt-6  px-24 2xl:px-10 xl:px-4 sm:px-0  flex flex-col items-center justify-center ">
         <ProjectList projects={data} />
       </div>
     </section>
