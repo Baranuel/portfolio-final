@@ -25,10 +25,10 @@ const icons = [
 
 export const ToolsSection = ( ) => {
 
-    return <section className="w-full min-h-[500px] my-[25px] flex flex-col gap-3 items-center justify-center">
+    return <section className="w-full min-h-[500px]  my-[25px] flex flex-col gap-3 items-center justify-center">
         <h1 className="text-sectionTitle leading-[3rem]   font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">Tools</h1>
-        <p className="text-sectionSubtitle sm:text-[18px] text-primaryGrey/80 sm:text-center">Collection of tool I use every day to make web applications useable and intuitive</p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-5 sm:gap-3">
+        <p className="text-sectionSubtitle sm:text-[16px] text-primaryGrey/80 sm:text-center">Collection of tool I use every day to make web applications useable and intuitive</p>
+        <div className="mt-1 flex flex-wrap items-center justify-center gap-5 sm:gap-3">
 
         {icons.map((item,index) => {
             return <div key={index} className="  flex flex-col items-center justify-center gap-2">

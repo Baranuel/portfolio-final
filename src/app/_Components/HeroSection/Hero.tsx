@@ -4,7 +4,7 @@ export const Hero = () => {
 
 
   return (
-    <section className="w-full h-[90vh] flex flex-col gap-1 items-center justify-center pt-24">
+    <section className="w-full h-[85vh] flex flex-col gap-1 items-center justify-center ">
      <div className="animate-appear_1 opacity-0">
      <div className="z-10 py-2  text-7xl 2xl:text-6xl sm:text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%  ">
         {heroText}

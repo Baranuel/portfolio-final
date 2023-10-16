@@ -13,7 +13,7 @@ export default function ContactSection (){
               <h1 className="text-sectionTitle leading-[3rem]  font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/70 from-20% 2xl:from-40% via-white via-70% to-white/80 to-90%">
         Reach Out
       </h1>
-      <p className="text-sectionSubtitle sm:text-[18px] text-stone-400 sm:text-center">{`Feel free to say hi as you're passing by.`}</p>
+      <p className="text-sectionSubtitle sm:text-[16px] text-stone-400 sm:text-center">{`Feel free to say hi as you're passing by.`}</p>
 
           <div className="flex sm:flex-col  w-full h-full items-center justify-center gap-14 sm:gap-4">
             <ContactForm />
