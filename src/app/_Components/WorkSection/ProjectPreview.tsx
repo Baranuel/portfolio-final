@@ -1,12 +1,16 @@
 "use client";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ProjectWithObjectives } from "../../../../prisma/types";
 import {
-  AnimatePresence,
   motion,
   useAnimate,
+  useAnimationControls,
   usePresence,
 } from "framer-motion";
+
+
+import {GiExpand} from "react-icons/gi";
+  import {IoCloseCircle} from "react-icons/io5";
 
 type ProjectPreviewProps = {
   project: ProjectWithObjectives | undefined;
@@ -19,6 +23,8 @@ export const ProjectPreview = ({
 }: ProjectPreviewProps) => {
   const [isPresent, safeToRemove] = usePresence();
   const [scope, animate] = useAnimate();
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
 
   const isPresentAnimation = useCallback(async () => {
     await animate(scope.current, {
@@ -47,7 +53,6 @@ export const ProjectPreview = ({
 
 
   useEffect(() => {
-
     if (isPresent && window) {
       isPresentAnimation();
     } else {
@@ -61,8 +66,8 @@ export const ProjectPreview = ({
   return (
     <div className="w-full h-full fixed backdrop-blur-[10px] z-50">
         <motion.div
-      onClick={() => setPreviewProject()}
-      className="fixed flex items-center justify-center h-[90vh] z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw]"
+      
+      className={`fixed flex items-center justify-center transition-all ${isFullScreen ? "w-full h-full" : "w-[90vw] h-[90vh]"}  z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
     >
       <motion.div
         ref={scope}
@@ -70,8 +75,15 @@ export const ProjectPreview = ({
         transition={{
           transition: { duration: 0.35, ease: [0.06, 0.975, 0.195, 0.985] },
         }}
-        className="bg-black rounded-xl"
-      ></motion.div>
+        className={`bg-black ${isFullScreen ? "rounded-none" : "rounded-xl"}  overflow-hidden relative`}
+      >
+        <div className="w-full h-10 bg-black absolute top-0 flex gap-3 items-center justify-end p-2 px-4 shadow-xl">
+        <GiExpand onClick={() => setIsFullScreen(!isFullScreen)} className='text-2xl text-white hover:cursor-pointer hover:scale-110' />
+        <IoCloseCircle className='text-2xl text-white hover:cursor-pointer'   
+           onClick={() => setPreviewProject()}/>
+        </div>
+        <iframe loading="eager"  src="https://paluba.vercel.app" className="w-full h-full" />
+      </motion.div>
     </motion.div>
     </div>
   );
