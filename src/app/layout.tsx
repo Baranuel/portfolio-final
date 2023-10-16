@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navigation } from './_Components/Navigation/Navigation'
 import ReactQueryProvider from './Providers/ReactQueryProvider'
-import { ProjectPreviewOutPortal } from './_Components/WorkSection/ProjectPreviewOUtPortal'
+import { ProjectPreviewOutPortal } from './_Components/WorkSection/ProjectPreviewOutPortal'
 
 
 
