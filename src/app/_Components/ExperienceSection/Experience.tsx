@@ -9,7 +9,10 @@ const DynamicTimeline = dynamic(() =>
 
 export const Experience = () => {
   return (
-    <section className="w-full mt-[100px] relative min-h-[500px] h-fit  flex flex-col gap-6 items-center justify-center">
+    <section className="w-full my-[75px] relative min-h-[500px]   flex flex-col gap-2 items-center justify-center">
+        <span className="tracking-[.25rem] sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
+        CONTINUING LEARNING
+      </span>
       <h1 className="text-sectionTitle font-bold text-transparent  sm:mb-2 text-center bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">
         Experience
       </h1>

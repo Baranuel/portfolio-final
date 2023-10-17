@@ -44,7 +44,7 @@ const config: Config = {
           '100%': { alignSelf:'end', transform:'translateY(100%)'},
         }},
         animation: {
-          signal: 'signal 3s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
+          signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
           icon_ping: 'iconPing 1.5s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
           appear_1: 'appear 1s ease-in-out forwards',
           appear_2: 'appear 1s ease-in-out 0.2s forwards',
@@ -81,7 +81,8 @@ const config: Config = {
       fontSize: {
         heroText: "74.88px",
         sectionTitle: "44px",
-        sectionSubtitle: "22.5px",
+        sectionSubtitle: "20px",
+        decorText: '10px',
         text: "15px",
       },
       fontFamily: {

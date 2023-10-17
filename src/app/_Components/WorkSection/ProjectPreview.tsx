@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ProjectWithObjectives } from "../../../../prisma/types";
 import {
   motion,
@@ -11,6 +11,8 @@ import {
 
 import {GiExpand} from "react-icons/gi";
   import {IoCloseCircle} from "react-icons/io5";
+import { Iframe } from "./Iframe";
+
 
 type ProjectPreviewProps = {
   project: ProjectWithObjectives | undefined;
@@ -24,6 +26,17 @@ export const ProjectPreview = ({
   const [isPresent, safeToRemove] = usePresence();
   const [scope, animate] = useAnimate();
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const historyLengthBeforeActivity = useRef<any>(window.history.length)
+  const backButtonPressed = useRef(0)
+
+  
+
+
+  // const restBrowserHistory = useCallback(() => {
+  //   const linksPressed = window.history.length - historyLengthBeforeActivity.current;
+  //   linksPressed > 0 && window.history.go(-linksPressed)
+  // },[])
+  
 
 
   const isPresentAnimation = useCallback(async () => {
@@ -57,9 +70,9 @@ export const ProjectPreview = ({
       isPresentAnimation();
     } else {
       isNotPresentAnimation();
-
+      // restBrowserHistory()
     }
-  }, [isPresent, isPresentAnimation, isNotPresentAnimation, safeToRemove]);
+  }, [isPresent, isPresentAnimation, isNotPresentAnimation, safeToRemove, historyLengthBeforeActivity]);
 
 
 
@@ -77,12 +90,12 @@ export const ProjectPreview = ({
         }}
         className={`bg-black ${isFullScreen ? "rounded-none" : "rounded-xl"}  overflow-hidden relative`}
       >
-        <div className="w-full h-10 bg-black absolute top-0 flex gap-3 items-center justify-end p-2 px-4 shadow-xl">
+        <div className="w-full h-[40px] bg-black   flex gap-3 items-center justify-end p-2 px-4 shadow-xl">
         <GiExpand onClick={() => setIsFullScreen(!isFullScreen)} className='text-2xl text-white hover:cursor-pointer hover:scale-110' />
         <IoCloseCircle className='text-2xl text-white hover:cursor-pointer'   
            onClick={() => setPreviewProject()}/>
         </div>
-        <iframe loading="eager"  src="https://paluba.vercel.app" className="w-full h-full" />
+        <Iframe src="https://paluba.vercel.app" />
       </motion.div>
     </motion.div>
     </div>
