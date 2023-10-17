@@ -16,7 +16,7 @@ export const revalidate = 10
 export const WorkSection = async () => {
   const data = await getProjects()
   return (
-    <section className="w-full relative min-h-[500px] h-fit my-[100px]  flex flex-col gap-3 items-center justify-start">
+    <section id='Projects' className="w-full relative min-h-[500px] h-fit py-[100px]  flex flex-col gap-3 items-center justify-start">
       <div className="absolute top-0 left-0 w-[20vw] h-[20vw] md:w-[35vw] md:h-[35vw] -translate-x-[50%] translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[260px] md:blur-[60px]">
         1
       </div>

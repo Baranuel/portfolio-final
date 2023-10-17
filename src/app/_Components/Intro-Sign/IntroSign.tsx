@@ -3,7 +3,7 @@ export const IntroSign = () => {
     
     const pinHead = `after:content-[''] after:bottom-0 after:right-0 after:translate-x-[50%] after:z-10 after:absolute after:h-4 after:w-4 after:rounded-full after:bg-gradient-to-t after:from-primaryBlack after:from-50% after:via-primaryBlack after:via-50% after:to-background/70 after:to-100%"`
   return (
-    <section className="flex relative flex-col items-center justify-center  min-h-[500px] h-fit mb-[100px]  w-full ">
+    <section className="flex relative flex-col items-center justify-center  min-h-[500px] h-fit pb-[100px]  w-full ">
      
       <div className="h-48 w-[2px] my-2 mb-6   absolute  -top-32  overflow-hidden flex  z-10 border-none  bg-primaryGrey/20 animate-appear_3  ">
         <div className=" z-0 bg-gradient-to-b  from-orange-700 to-violet-800 w-full h-full animate-signal"></div>

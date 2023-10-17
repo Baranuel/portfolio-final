@@ -25,7 +25,7 @@ const icons = [
 
 export const ToolsSection = ( ) => {
 
-    return <section className="w-full min-h-[500px]  my-[100px] flex flex-col gap-3 items-center justify-start">
+    return <section id='Tools' className="w-full min-h-[500px]  py-[100px] flex flex-col gap-3 items-center justify-start">
            <span className="tracking-[.25rem] w-full whitespace-nowrap self-center text-center  sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
         MASTERING INSTRUMENTS
       </span>

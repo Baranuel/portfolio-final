@@ -28,6 +28,11 @@ const config: Config = {
     },
     extend: {
       keyframes: {
+        pulseBG: {
+          '0%': { transform: 'scale(1)', opacity: '1'},
+          '50%': { transform: 'scale(1.5)', opacity: '0.15'},
+          '100%': { transform: 'scale(1)', opacity: '1'}
+        },
         text: {
           '0%': {
             'background-size': '200% 200%',
@@ -45,7 +50,7 @@ const config: Config = {
           '100%': { opacity:"1" , transform:"translateY(0px)"},
         },
         iconPing: {
-         
+
             '25%': { transform: 'scale(2)', opacity: '0.45'},
             '80%': { transform: 'scale(1)', opacity: '1'}
         },
@@ -57,6 +62,7 @@ const config: Config = {
         }},
         animation: {
           text: 'text 4s linear infinite',
+          pulseBG : 'pulseBG 4s linear infinite',
           signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
           icon_ping: 'iconPing 1.5s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
           appear_1: 'appear 1s ease-in-out forwards',
