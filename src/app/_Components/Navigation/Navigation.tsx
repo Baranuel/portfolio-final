@@ -4,7 +4,7 @@ export const Navigation = () => {
 
     const links = ['Tools', 'Projects', 'About', 'Contact']
 
-    return <nav className="fixed flex px-12 items-center justify-between  z-40 top-0 w-full h-14 backdrop-blur-[10px] bg-background/30 border-b border-primaryGrey/20">
+    return <nav className="fixed sm:hidden flex px-12 items-center justify-between  z-40 top-0 w-full h-14 backdrop-blur-[10px] bg-background/30 border-b border-primaryGrey/20">
            <Link href={'#Hero'} className=" animate-text text-xl z-20 font-bold text-center "> SB | Portfolio</Link>
            <div className="flex ">
         {links.map((item, index) => {
