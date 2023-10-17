@@ -56,7 +56,7 @@ const config: Config = {
           '100%': { alignSelf:'end', transform:'translateY(100%)'},
         }},
         animation: {
-          text: 'text 7s linear infinite',
+          text: 'text 6s linear infinite',
           signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
           icon_ping: 'iconPing 1.5s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
           appear_1: 'appear 1s ease-in-out forwards',
