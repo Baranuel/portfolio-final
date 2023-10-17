@@ -23,7 +23,7 @@ export const WorkSection = async () => {
       <div className="absolute bottom-0 right-0 w-[20vw] h-[20vw]  md:w-[35vw] md:h-[35vw] translate-x-[100%] translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[260px] sm:blur-[100px] ">
         1
       </div>
-      <span className="tracking-[.25rem] whitespace-nowrap w-full sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
+      <span className="tracking-[.25rem] whitespace-nowrap self-center text-center  w-full sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
         BUILDING PROJECTS
       </span>
       <h1 className="text-sectionTitle leading-[3rem]  font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">
