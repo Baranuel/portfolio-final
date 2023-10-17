@@ -26,7 +26,7 @@ const icons = [
 export const ToolsSection = ( ) => {
 
     return <section className="w-full min-h-[500px]  my-[75px] flex flex-col gap-3 items-center justify-start">
-           <span className="tracking-[.25rem] sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
+           <span className="tracking-[.25rem] w-full whitespace-nowrap sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
         MASTERING INSTRUMENTS
       </span>
         <h1 className="text-sectionTitle leading-[3rem]   font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%">Toolshed</h1>

@@ -12,7 +12,7 @@ export const IntroSign = () => {
       
       <div className=" relative max-w-[500px] h-fit  bg-gradient-to-t  -translate-y-2 flex flex-col gap-2 justify-center items-center border-primaryBlack/30  rounded-xl p-1">
         <div className="absolute w-full h-1/2 bg-gradient-to-b from-orange-300 via-violet-600 to-red-300 opacity-10 z-0 blur-[220px] -translate-y-2"></div>
-        <span className="tracking-[.25rem] sm:text-decorText text-xs  font-semibold text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
+        <span className="tracking-[.25rem] w-full sm:text-decorText text-xs  font-semibold text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
         DRIVE FOR WEB
       </span>
         <h1 className="text-sectionTitle leading-[3rem]  text-center z-10  m-0 font-bold text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90% ">
