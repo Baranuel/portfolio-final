@@ -28,6 +28,18 @@ const config: Config = {
     },
     extend: {
       keyframes: {
+        text: {
+          '0%': {
+            'background-size': '200% 200%',
+            'background-position': '0 -200%',
+          },
+          '100%': {
+            'background-size': '200% 200%',
+            'background-position': '200% 0',
+          },
+
+        
+        },
         appear: {
           '0%': { opacity: "0", transform:"translateY(50px)" },
           '100%': { opacity:"1" , transform:"translateY(0px)"},
@@ -44,6 +56,7 @@ const config: Config = {
           '100%': { alignSelf:'end', transform:'translateY(100%)'},
         }},
         animation: {
+          text: 'text 7s linear infinite',
           signal: 'signal 2s cubic-bezier(0.060, 0.975, 0.195, 0.985) infinite',
           icon_ping: 'iconPing 1.5s cubic-bezier(0.060, 0.975, 0.195, 0.985) forwards',
           appear_1: 'appear 1s ease-in-out forwards',

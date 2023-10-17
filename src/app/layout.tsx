@@ -26,7 +26,7 @@ export default function RootLayout({
         <ProjectPreviewOutPortal />
       <Navigation />
         <ReactQueryProvider>{children}</ReactQueryProvider>
-        <footer className='bg-stone-950 min-h-[15vh]  border-t-[1px] border-stone-700 flex items-center justify-center'>
+        <footer className='bg-stone-950 min-h-[17vh]  border-t-[1px] border-stone-700 flex items-center justify-center'>
         <span className='text-stone-300'>Designed and Developed by Samuel Baran </span>
         </footer>
         </body>
