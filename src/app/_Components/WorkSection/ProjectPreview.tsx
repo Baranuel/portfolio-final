@@ -95,7 +95,7 @@ export const ProjectPreview = ({
         <IoCloseCircle className='text-2xl text-white hover:cursor-pointer'   
            onClick={() => setPreviewProject()}/>
         </div>
-        <Iframe src={project?.demo ?? ""} />
+        {project?.demo && <Iframe src={project.demo} />}
       </motion.div>
     </motion.div>
     </div>
