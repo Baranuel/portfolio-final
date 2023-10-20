@@ -121,7 +121,7 @@ export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) 
                   className="col-start-10 row-start-6 lg:row-start-7 sm:row-start-4 xs:row-start-3 sm:col-start-7 row-span-1 sm:col-span-6   self-end sm:self-center lg:col-start-10 col-span-3 lg:col-span-3"
                 >
                   <button onClick={() => handlePreviewProject(project)} className="bg-black rounded-md text-white  py-2  lg:text-[14px] w-full">
-                    Click me
+                    Live Demo
                   </button>
                 </motion.div>
               </div>

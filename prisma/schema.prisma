@@ -16,6 +16,7 @@ model Project {
   category  String
   year     Int
   image     String     @default("")
+  demo      String     @default("")
   technologies String[]
   objectives Objective[] 
 }
