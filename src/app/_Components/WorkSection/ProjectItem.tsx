@@ -7,6 +7,7 @@ import { TechRow } from "./TechRow";
 import { TextSection } from "./TextSection";
 import { TextSectionMobile } from "./TextSectionMobile";
 import { ProjectWithObjectives } from "../../../../prisma/types";
+import Link from "next/link";
 
 
 type ProjectItemProps = {
@@ -109,9 +110,10 @@ export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) 
                   transition={{ delay: 0.35 }}
                   className="col-start-7 row-start-6 lg:row-start-7 sm:row-start-4 xs:row-start-3 sm:col-start-1 sm:col-span-6 row-span-1  self-end sm:self-center lg:col-start-7 col-span-3 lg:col-span-3 "
                 >
+                  <Link href={project.demo} target="_blank">
                   <button className="bg-background rounded-md text-black border border-slate-300  py-2 lg:text-[14px]  w-full">
-                    Find-out More
-                  </button>
+                   Visit Page
+                  </button></Link>
                 </motion.div>
 
                 <motion.div
