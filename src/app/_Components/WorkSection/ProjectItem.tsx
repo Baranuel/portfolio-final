@@ -7,6 +7,7 @@ import { TechRow } from "./TechRow";
 import { TextSection } from "./TextSection";
 import { TextSectionMobile } from "./TextSectionMobile";
 import { ProjectWithObjectives } from "../../../../prisma/types";
+import {BiLinkExternal} from "react-icons/bi";
 import Link from "next/link";
 
 
@@ -111,8 +112,8 @@ export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) 
                   className="col-start-7 row-start-6 lg:row-start-7 sm:row-start-4 xs:row-start-3 sm:col-start-1 sm:col-span-6 row-span-1  self-end sm:self-center lg:col-start-7 col-span-3 lg:col-span-3 "
                 >
                   <Link href={project.demo} target="_blank">
-                  <button className="bg-background rounded-md text-black border border-slate-300  py-2 lg:text-[14px]  w-full">
-                   Visit Page
+                  <button className="bg-background rounded-md flex gap-1 items-center justify-center text-black border border-slate-300  py-2 lg:text-[14px]  w-full">
+                   <span>Visit Page</span> <BiLinkExternal className='text-xl sm:text-lg'/>
                   </button></Link>
                 </motion.div>
 
