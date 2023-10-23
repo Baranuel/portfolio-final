@@ -7,20 +7,25 @@ type ResponseData = {
 }
 export async function POST(request: Request) {
   
-  const {id} =  await request.json()
+  const newProject  = await prisma.project.create({
+    data: {
+      title: 'Student Portfolio',
+      year: 2022,
+      image: 'https://iili.io/JKRFsOx.png',
+      category: 'Website',
+      technologies: ['React', 'NextJs','TypeScript','Vercel','Framer','TailwindCss'],
+      demo: 'https://portfolio-lime-theta.vercel.app',
+      objectives: {
+        create: [
+          {title:'Create Portfolio' ,description: 'Create my very first portfolio representing my web development skills and school projects.' },
+          {title:'Playful Design', description: 'Objective was to create a design that is playful and fun but still informative and clear.' },
+        ],
+      },
+    },
+  })
 
-    const newObjective = await prisma.objective.create({
-        data: {
-            title: 'Animated Text',
-            description: 'Create nice animations for text as it appears on the screen',
-            projectId: id
-        }
-    })
 
-
-
-
-  return  NextResponse.json(newObjective)
+  return  NextResponse.json(newProject)
 }
 
 export async function PUT(request: Request)  {
@@ -34,7 +39,7 @@ export async function PUT(request: Request)  {
 
   const res = await prisma.project.update({
     where: {id:id},
-    data: {image: 'https://iili.io/JFFak5g.webp'}
+    data: { image:'https://iili.io/JKRB8mb.webp'}
   })
 
 

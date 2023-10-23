@@ -63,8 +63,8 @@ export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) 
                     src={image}
                     alt={project.title}
                     fill
-                    sizes='100px 100px'
-                    className="rounded-xl object-cover"
+                    sizes='1200px 1200px'
+                    className="rounded-xl object-cover bg-center shadow-xl "
                   />
                 </motion.div>
                 {/* Image */}

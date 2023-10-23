@@ -7,6 +7,7 @@ type ProjectWithObjectives = Prisma.ProjectGetPayload<{
   include: { objectives: true }
 }>
 
+
 const getProjects = async () => {
   const res = await axiosInstance.get<ProjectWithObjectives[]>("projects");
   return res.data;
