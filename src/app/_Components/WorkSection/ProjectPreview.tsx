@@ -26,17 +26,6 @@ export const ProjectPreview = ({
   const [isPresent, safeToRemove] = usePresence();
   const [scope, animate] = useAnimate();
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const historyLengthBeforeActivity = useRef<any>(window.history.length)
-  const backButtonPressed = useRef(0)
-
-  
-
-
-  // const restBrowserHistory = useCallback(() => {
-  //   const linksPressed = window.history.length - historyLengthBeforeActivity.current;
-  //   linksPressed > 0 && window.history.go(-linksPressed)
-  // },[])
-  
 
 
   const isPresentAnimation = useCallback(async () => {
@@ -72,7 +61,7 @@ export const ProjectPreview = ({
       isNotPresentAnimation();
       // restBrowserHistory()
     }
-  }, [isPresent, isPresentAnimation, isNotPresentAnimation, safeToRemove, historyLengthBeforeActivity]);
+  }, [isPresent, isPresentAnimation, isNotPresentAnimation, safeToRemove]);
 
 
 
@@ -95,7 +84,7 @@ export const ProjectPreview = ({
         <IoCloseCircle className='text-2xl text-white hover:cursor-pointer'   
            onClick={() => setPreviewProject()}/>
         </div>
-        {project?.demo && <Iframe src={project.demo} />}
+        {project?.demo && isPresent && <Iframe src={project.demo} />}
       </motion.div>
     </motion.div>
     </div>

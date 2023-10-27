@@ -1,7 +1,7 @@
 "use client";
 import { ProjectItem } from "./ProjectItem";
 import { ProjectWithObjectives } from "../../../../prisma/types";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { ProjectPreview } from "./ProjectPreview";
 
 import { ProjectPreviewInPortal } from "./ProjectPreviewInPortal";
@@ -16,10 +16,11 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
     ProjectWithObjectives | undefined
   >(undefined);
 
-  const handlePreviewProject = (project: ProjectWithObjectives) => {
-    setPreviewVisible(true);
-    setPreviewProject(project);
-  };
+  const handlePreviewProject = useCallback(
+    (project: ProjectWithObjectives) => {
+      setPreviewVisible(true);
+      setPreviewProject(project);
+    }, [])
 
   const [previewVisible, setPreviewVisible] = useState(false);
 
