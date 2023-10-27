@@ -40,7 +40,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
 <AnimatePresence>
         {previewVisible &&  (
         <ProjectPreviewInPortal>
-            <ProjectPreview
+          <ProjectPreview
             project={previewProject}
             setPreviewProject={() => setPreviewVisible(false)}
           />

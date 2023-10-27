@@ -9,9 +9,9 @@ export const Iframe = ({src}: {src:string}) => {
 
     return (
         <>
-        {!loaded &&  <div className="w-full h-full flex flex-col gap-2 items-center justify-center">
+        {!loaded &&  <div className=" w-full h-full flex flex-col gap-2 items-center justify-center">
             <Spinner size='extraLarge'/>
-            <span className="text-white">Loading Preview...</span>
+            <span className="text-white mb-12">Loading Preview...</span>
         </div>}
         <iframe className={`w-full h-full ${loaded ? 'block' : 'hidden'}`} src={src} onLoad={() => setLoaded(true)}></iframe>
         </>

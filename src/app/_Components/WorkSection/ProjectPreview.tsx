@@ -1,10 +1,10 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ProjectWithObjectives } from "../../../../prisma/types";
 import {
   motion,
   useAnimate,
-  useAnimationControls,
+
   usePresence,
 } from "framer-motion";
 
@@ -56,8 +56,10 @@ export const ProjectPreview = ({
 
   useEffect(() => {
     if (isPresent && window) {
+      document.body.style.overflow = "hidden";
       isPresentAnimation();
     } else {
+      document.body.style.overflow = "unset";
       isNotPresentAnimation();
       // restBrowserHistory()
     }
@@ -66,9 +68,8 @@ export const ProjectPreview = ({
 
 
   return (
-    <div className="w-full h-full fixed backdrop-blur-[10px] z-50">
+    <div className="w-full h-full fixed backdrop-blur-[10px] z-50  ">
         <motion.div
-      
       className={`fixed flex items-center justify-center transition-all ${isFullScreen ? "w-full h-full" : "w-[90vw] h-[90vh]"}  z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
     >
       <motion.div
