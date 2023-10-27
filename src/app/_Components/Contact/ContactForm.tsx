@@ -13,6 +13,7 @@ const {mutate, status} = useSendEmailMutation()
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     if( !formData.get("message")) return Toast("error", "Message is required")
+
     formData.append(
       "user_id",
       process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY as string
@@ -42,7 +43,7 @@ const {mutate, status} = useSendEmailMutation()
           <input
             required
             name="from_name"
-            className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300  "
+            className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300 autofill:bg-transparent  "
             type="text"
           />
         </div>
@@ -54,7 +55,7 @@ const {mutate, status} = useSendEmailMutation()
           <input
             required
             name="from_email"
-            className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300 transition-transform "
+            className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300   transition-transform "
             type="text"
           />
         </div>
@@ -65,7 +66,7 @@ const {mutate, status} = useSendEmailMutation()
           </label>
           <textarea
             name="message"
-            className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300 transition-transform  resize-none"
+            className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300 autofill:bg-re500  transition-transform  resize-none"
           />
         </div>
     {status === 'loading' ? <button
