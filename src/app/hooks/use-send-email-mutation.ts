@@ -1,23 +1,35 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { axiosInstance } from "../axios/axios-instance";
-import toast from "react-hot-toast";
 import { Toast } from "../_Components/Toasters/Toast";
+import { FormDataIO } from "../_Components/Contact/ContactForm";
 
-
+const user_id = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY as string
+const template_id = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string
+const service_id = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string
 
 
 export const useSendEmailMutation = (callback: () => void) => {
 
     return useMutation(
-        async (data: FormData) => {
+        async (data:FormDataIO) => {
+
+          const dataToSend = {
+            user_id,
+            template_id,
+            service_id,
+            template_params: {
+              ...data
+            }
+          }
+
           const res = await axiosInstance.post(
-            "https://api.emailjs.com/api/v1.0/email/send-form",
-            data,
+            "https://api.emailjs.com/api/v1.0/email/send",
+            dataToSend,
             {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
+              headers:{
+                contentType: 'application/json'
+              }
             }
           );
           return res.data;

@@ -4,39 +4,39 @@ import { useSendEmailMutation } from "@/app/hooks/use-send-email-mutation";
 import { Toast } from "../Toasters/Toast";
 import { Toaster } from "react-hot-toast";
 import { Spinner } from "../Spinner/Spinner";
+import { useForm } from "react-hook-form";
+
+export type FormDataIO = {
+  from_name: string;
+  from_email: string;
+  message: string;
+  user_id: string;
+  template_id: string;
+  service_id: string;
+}
 
 export const ContactForm = () => {
-  const {mutate, status} = useSendEmailMutation(() => form?.reset())
-  
-if(!document) return null
-const form = document.getElementById("contact-form") as HTMLFormElement
+  const {mutate, status} = useSendEmailMutation(() => reset() )
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormDataIO>()
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    if( !formData.get("message")) return Toast("error", "Message is required")
-
-    formData.append(
-      "user_id",
-      process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY as string
-    );
-    formData.append(
-      "template_id",
-      process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string
-    );
-    formData.append(
-      "service_id",
-      process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string
-    );
-    mutate(formData)
-
+  const handleSubmitForm =  (data:FormDataIO) => {
+    if(!data.message) return Toast("error", "Please enter a message")
+    mutate(data)
   };
+
+
 
   return (
     <>
       <form
         id="contact-form"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(handleSubmitForm)}
          className={`w-4/6 lg:w-4/5 sm:w-full h-full my-6 bg-stone-950 border border-stone-600 rounded-md min-h-[450px] max-w-[530px]  p-8 sm:p-4 flex flex-col gap-8   `}
       >
         <div className="flex flex-col  w-2/3 sm:w-full ">
@@ -44,10 +44,8 @@ const form = document.getElementById("contact-form") as HTMLFormElement
             Name
           </label>
           <input
-            required
-            name="from_name"
+            {...register("from_name", { required: true })}
             className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300 autofill:bg-transparent  "
-            type="text"
           />
         </div>
 
@@ -56,9 +54,7 @@ const form = document.getElementById("contact-form") as HTMLFormElement
             Email
           </label>
           <input
-            required
-            name="from_email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            {...register("from_email", { required: true })}
             className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300   transition-transform "
             type="email"
           />
@@ -69,7 +65,7 @@ const form = document.getElementById("contact-form") as HTMLFormElement
             Message
           </label>
           <textarea
-            name="message"
+            {...register("message", { required: true })}
             className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300 autofill:bg-re500  transition-transform  resize-none"
           />
         </div>
