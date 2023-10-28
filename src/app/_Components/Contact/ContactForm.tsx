@@ -6,8 +6,10 @@ import { Toaster } from "react-hot-toast";
 import { Spinner } from "../Spinner/Spinner";
 
 export const ContactForm = () => {
-
-const {mutate, status} = useSendEmailMutation()
+  const {mutate, status} = useSendEmailMutation(() => form?.reset())
+  
+if(!document) return null
+const form = document.getElementById("contact-form") as HTMLFormElement
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,14 +29,15 @@ const {mutate, status} = useSendEmailMutation()
       process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string
     );
     mutate(formData)
-    
+
   };
 
   return (
     <>
       <form
+        id="contact-form"
         onSubmit={handleSubmit}
-        className={`w-4/6 lg:w-4/5 sm:w-full h-full my-6 bg-stone-950 border border-stone-600 rounded-md min-h-[450px] max-w-[530px]  p-8 sm:p-4 flex flex-col gap-8   `}
+         className={`w-4/6 lg:w-4/5 sm:w-full h-full my-6 bg-stone-950 border border-stone-600 rounded-md min-h-[450px] max-w-[530px]  p-8 sm:p-4 flex flex-col gap-8   `}
       >
         <div className="flex flex-col  w-2/3 sm:w-full ">
           <label htmlFor="name" className="text-stone-400 text-[12px] ">
@@ -55,8 +58,9 @@ const {mutate, status} = useSendEmailMutation()
           <input
             required
             name="from_email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             className=" bg-transparent  border-b border-stone-600 p-2 text-white text-[18px] focus:outline-none  focus:border-stone-300   transition-transform "
-            type="text"
+            type="email"
           />
         </div>
 

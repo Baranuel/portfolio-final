@@ -7,7 +7,7 @@ import { Toast } from "../_Components/Toasters/Toast";
 
 
 
-export const useSendEmailMutation = () => {
+export const useSendEmailMutation = (callback: () => void) => {
 
     return useMutation(
         async (data: FormData) => {
@@ -30,6 +30,7 @@ export const useSendEmailMutation = () => {
           // Always refetch after error or success:
           onSettled: () => {
             Toast("success", "Email Sent Successfully");
+            callback();
           },
         }
       );
