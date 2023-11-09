@@ -1,7 +1,5 @@
-import { motion } from "framer-motion";
-export const Hero = () => {
-  const heroText = "";
 
+export const Hero = () => {
 
   return (
     <section id='Hero' className="w-full h-[90vh] flex flex-col gap-2 items-center justify-center ">

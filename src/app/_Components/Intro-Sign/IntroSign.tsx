@@ -1,7 +1,6 @@
 export const IntroSign = () => {
 
     
-    const pinHead = `after:content-[''] after:bottom-0 after:right-0 after:translate-x-[50%] after:z-10 after:absolute after:h-4 after:w-4 after:rounded-full after:bg-gradient-to-t after:from-primaryBlack after:from-50% after:via-primaryBlack after:via-50% after:to-background/70 after:to-100%"`
   return (
     <section className="flex relative flex-col items-center justify-center  min-h-[500px] h-fit pb-[100px]  w-full ">
      

@@ -10,11 +10,7 @@ export default function Home() {
 
   return (
     <>
-    <main className="w-full relative overflow-hidden px-52 2xl:px-24 lg:px-12 md:px-8 sm:px-4 xs:p-2 max-w-[100vw] ">
-     
-      <div className="absolute top-0 right-0 w-[35vw] h-[25vw]  md:w-[35vw] md:h-[35vw] translate-x-[40%] -translate-y-[50%] bg-primaryGrey/10 z-0 rounded-full blur-[429px] sm:blur-[100px] ">
-        
-      </div>
+    <main className="w-full relative  px-52 2xl:px-24 lg:px-12 md:px-8 sm:px-4 xs:p-2 max-w-[100vw] ">
       <Hero />
       <IntroSign />
       <ToolsSection />
