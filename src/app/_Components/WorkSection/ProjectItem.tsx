@@ -63,6 +63,7 @@ export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) 
                     loading="eager"
                     quality={100}
                     src={image}
+                    priority
                     alt={project.title}
                     fill
                     sizes='1200px 1200px'
