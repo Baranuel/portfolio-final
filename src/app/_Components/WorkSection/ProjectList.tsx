@@ -16,50 +16,35 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
     ProjectWithObjectives | undefined
   >(undefined);
 
-  const handlePreviewProject = useCallback(
-    (project: ProjectWithObjectives) => {
-      setPreviewVisible(true);
-      setPreviewProject(project);
-    }, [])
+  const handlePreviewProject = useCallback((project: ProjectWithObjectives) => {
+    setPreviewVisible(true);
+    setPreviewProject(project);
+  }, []);
 
   const [previewVisible, setPreviewVisible] = useState(false);
 
   return (
     <>
       {projects?.map((project, index: number) => {
-        const image =  <Image
-        loading="eager"
-        quality={100}
-        src={project.image}
-        priority
-        alt={project.title}
-        fill
-        sizes='1200px 1200px'
-        className="rounded-xl object-cover bg-center shadow-xl "
-      />
-
         return (
           <ProjectItem
             handlePreviewProject={handlePreviewProject}
             project={project}
-            preloadedImage={image}
             key={index}
           />
         );
       })}
 
-
-<AnimatePresence>
-        {previewVisible &&  (
-        <ProjectPreviewInPortal>
-          <ProjectPreview
-            project={previewProject}
-            setPreviewProject={() => setPreviewVisible(false)}
-          />
-        </ProjectPreviewInPortal>
-          )}
-          </AnimatePresence>
-
+      <AnimatePresence>
+        {previewVisible && (
+          <ProjectPreviewInPortal>
+            <ProjectPreview
+              project={previewProject}
+              setPreviewProject={() => setPreviewVisible(false)}
+            />
+          </ProjectPreviewInPortal>
+        )}
+      </AnimatePresence>
     </>
   );
 };
