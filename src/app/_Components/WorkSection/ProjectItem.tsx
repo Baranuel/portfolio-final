@@ -13,11 +13,12 @@ import Link from "next/link";
 
 type ProjectItemProps = {
   project: ProjectWithObjectives;
+  preloadedImage: React.ReactNode;
   handlePreviewProject: (project: ProjectWithObjectives) => void
 
 };
 
-export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) => {
+export const ProjectItem = ({ project, handlePreviewProject, preloadedImage}: ProjectItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const {objectives, technologies, image} = project
@@ -59,16 +60,7 @@ export const ProjectItem = ({ project, handlePreviewProject}: ProjectItemProps) 
                   className="bg-gray-200 relative rounded-xl w-full  col-span-5 row-span-6 lg:row-span-5 sm:row-span-2 sm:col-span-6 xs:row-span-1  lg:row-start-3 sm:row-start-1  lg:col-span-6 row-start-1 col-start-1  h-full"
                 >
                   {" "}
-                  <Image
-                    loading="eager"
-                    quality={100}
-                    src={image}
-                    priority
-                    alt={project.title}
-                    fill
-                    sizes='1200px 1200px'
-                    className="rounded-xl object-cover bg-center shadow-xl "
-                  />
+                 {preloadedImage}
                 </motion.div>
                 {/* Image */}
                 <motion.span
