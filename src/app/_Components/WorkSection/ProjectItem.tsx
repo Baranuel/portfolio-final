@@ -20,7 +20,7 @@ export const ProjectItem = ({
   handlePreviewProject,
 }: ProjectItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  console.log(project);
+  
   const { objectives, technologies, image } = project;
   return (
     <>

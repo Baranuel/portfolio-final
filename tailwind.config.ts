@@ -100,7 +100,7 @@ const config: Config = {
       fontSize: {
         heroText: "74.88px",
         sectionTitle: "44px",
-        sectionSubtitle: "20px",
+        sectionSubtitle: "18px",
         decorText: '10px',
         text: "15px",
       },
