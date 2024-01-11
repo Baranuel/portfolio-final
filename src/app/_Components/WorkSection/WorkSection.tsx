@@ -2,6 +2,7 @@
 import { ProjectList } from "./ProjectList";
 import { axiosInstance } from "@/app/axios/axios-instance";
 import { Prisma, Project } from "@prisma/client";
+import { prisma } from "../../../../lib/prisma";
 
 type ProjectWithObjectives = Prisma.ProjectGetPayload<{
   include: { objectives: true }
@@ -9,12 +10,19 @@ type ProjectWithObjectives = Prisma.ProjectGetPayload<{
 
 
 const getProjects = async () => {
-  const res = await axiosInstance.get<ProjectWithObjectives[]>("projects");
-  return res.data;
+  return await prisma.project.findMany({
+    orderBy: {
+      year: 'desc'
+    },
+    include: {
+      objectives: true,
+    },
+  });
 }
 
 export const WorkSection = async () => {
   const data = await getProjects()
+  
   return (
     <section id='Work' className="w-full relative min-h-[500px] h-fit py-[100px]  flex flex-col gap-3 items-center justify-start">
       <span className="tracking-[.25rem] whitespace-nowrap self-center text-center  w-full sm:text-decorText text-xs  font-semibold  text-transparent bg-clip-text bg-gradient-to-b from-violet-700 to-red-800">
