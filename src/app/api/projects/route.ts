@@ -24,16 +24,3 @@ export async function GET(request: Request) {
 
   return NextResponse.json(projectsWithObjectives)
 }
-
-
-export async function POST(request: Request) {
-
-    await prisma.project.update({
-      where: { id: 'clr8z5dct000ivb3m7jsttwau' },
-      data: {
-        technologies: ['React', 'NextJs', 'Postgresql', 'TypeScript', 'Vercel', 'Antdesign', 'TailwindCss', "Clerk"]
-      }
-  })
-  return NextResponse.json({})
-
-}

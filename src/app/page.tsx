@@ -6,6 +6,8 @@ import { WorkSection } from "./_Components/WorkSection/WorkSection";
 import { Experience } from "./_Components/ExperienceSection/Experience";
 import ContactSection  from "./_Components/Contact/ContactSection";
 
+
+
 export default function Home() {
 
 
