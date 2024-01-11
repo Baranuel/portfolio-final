@@ -13,7 +13,6 @@ const getProjects = async () => {
   return res.data;
 }
 
-
 export const WorkSection = async () => {
   const data = await getProjects()
   return (
