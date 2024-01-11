@@ -20,7 +20,7 @@ export const ProjectItem = ({
   handlePreviewProject,
 }: ProjectItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
+  console.log(project);
   const { objectives, technologies, image } = project;
   return (
     <>
@@ -136,8 +136,9 @@ export const ProjectItem = ({
                   className="col-start-10 row-start-6 lg:row-start-7 sm:row-start-4 xs:row-start-3 sm:col-start-7 row-span-1 sm:col-span-6   self-end sm:self-center lg:col-start-10 col-span-3 lg:col-span-3"
                 >
                   <button
+                    disabled={!project.previewEnabled}
                     onClick={() => handlePreviewProject(project)}
-                    className="bg-black rounded-md text-white  py-2  lg:text-[14px] w-full"
+                    className={`${project.previewEnabled ? "bg-black text-white" : "bg-stone-100 border border-stone-200 text-stone-300"} rounded-md   py-2  lg:text-[14px] w-full`}
                   >
                     Live Demo
                   </button>

@@ -8,7 +8,7 @@ import { ProjectPreviewInPortal } from "./ProjectPreviewInPortal";
 import { AnimatePresence } from "framer-motion";
 
 type ProjectListProps = {
-  projects: ProjectWithObjectives[] | undefined;
+  projects: ProjectWithObjectives[];
 };
 
 export const ProjectList = ({ projects }: ProjectListProps) => {

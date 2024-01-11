@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-
+import Clerk from '../../../../public/clerk.svg'
 import NextJSIcon from '../../../../public/nextdotjs.svg'
 import TailwindIcon from '../../../../public/tailwindcss.svg'
 import JavaScriptIcon from '../../../../public/javascript.svg'
@@ -11,6 +11,9 @@ import ReactQueryIcon from '../../../../public/reactquery.svg'
 import MongoDBIcon from '../../../../public/mongodb.svg'
 import ReactHookFormIcon from '../../../../public/reacthookform.svg'
 import ReactIcon from '../../../../public/react.svg'
+import Postgresql from '../../../../public/postgresql.svg'
+import Antdesign from '../../../../public/antdesign.svg'
+
 
 export const TechRow = ({technologies}: {technologies: string[]}) => {
   
@@ -26,6 +29,9 @@ const icons = {
   TypeScript: TypeScriptIcon,
   Vercel: VercelIcon,
   Framer: FramerIcon,
+  Postgresql: Postgresql,
+  Clerk: Clerk,
+  Antdesign: Antdesign,
 
 }
 
