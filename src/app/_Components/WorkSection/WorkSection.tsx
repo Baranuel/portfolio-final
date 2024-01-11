@@ -12,7 +12,6 @@ const getProjects = async () => {
   const res = await axiosInstance.get<ProjectWithObjectives[]>("projects");
   return res.data;
 }
-export const revalidate = 0
 
 
 export const WorkSection = async () => {
