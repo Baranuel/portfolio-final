@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */ 
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -105,7 +104,8 @@ const config: Config = {
         text: "15px",
       },
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        inter: ['var(--font-inter)', 'sans-serif'],
+        pixelify: ['var(--font-pixelify-sans)', 'sans-serif'],
       },
       
     },

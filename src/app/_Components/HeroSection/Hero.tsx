@@ -1,23 +1,29 @@
 import Link from "next/link";
+import { Canvas } from "./Canvas";
+import Image from "next/image";
 
 export const Hero = () => {
-
   return (
-    <section id='Hero' className="w-full h-[90vh] flex flex-col gap-2 items-center justify-center ">
-     <div className="animate-appear_1 opacity-0">
-     <div className="z-20 py-2 relative   text-8xl 2xl:text-8xl sm:text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-b from-primaryGrey/70 from-30% 2xl:from-40% via-primaryBlack/80 via-70% to-primaryBlack/80 to-90%  ">
-      <span className=" animate-text text-8xl z-20 relative 2xl:text-8xl sm:text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-l from-orange-600/70 from-30% 2xl:from-40%  via-[#9F1239] via-70% to-orange-600/70 to-90% ">Web Creator</span> and Design Enthusiast
+    <section
+      id="Hero"
+      className="w-full h-[80vh] flex flex-col gap-8 md:gap-4 items-center justify-center relative p-2"
+    >
+      <Canvas />
+      <div className="animate-appear_1 opacity-0">
+        <Image src={"/samuel.svg"} alt="hero-image" width={550} height={50} />
       </div>
-     </div>
-      <p className=" z-10 text-sectionSubtitle sm:text-[18px] text-center  text-primaryGrey animate-appear_2 opacity-0 ">
-        {" "}
-        A passionate developer for eye catching websites
+      <p className="max-w-[25em] font-pixelify  text-center text-3xl sm:text-2xl text-slate-800 leading-[1.1] text-balance animate-appear_2 opacity-0 ">
+        <strong className="mr-1">React developer</strong>
+        <span>
+          dedicated to implementing best practices with the most current
+          technologies.
+        </span>
       </p>
-     <Link href='#Work'>
-     <button className=" z-10 px-8 py-2 mt-6 rounded-md bg-primaryBlack text-white animate-appear_3 opacity-0">
-        See Projects
-      </button>
-     </Link>
+      <Link href="#Work">
+      <button className=" font-pixelify bg-gradient-to-b from-orange-400 to-red-600 border-2 button-primary mt-4 text-xl font-semibold border-slate-700  text-white px-8  py-2 rounded-md  animate-appear_3 opacity-0 button-primary">
+          See Projects
+        </button>
+      </Link>
     </section>
   );
 };

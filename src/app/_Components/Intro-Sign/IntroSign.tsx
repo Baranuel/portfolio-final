@@ -2,7 +2,7 @@ export const IntroSign = () => {
 
     
   return (
-    <section className="flex relative flex-col items-center justify-center  min-h-[500px] h-fit pb-[100px]  w-full ">
+    <section className="flex relative bg-white flex-col items-center justify-center  min-h-[500px] h-fit pb-[100px]  w-full ">
      
       <div className="h-48 w-[2px] my-2 mb-6   absolute  -top-32  overflow-hidden flex  z-10 border-none  bg-primaryGrey/20 animate-appear_3  ">
         <div className=" z-0 bg-gradient-to-b  from-orange-700 to-violet-800 w-full h-full animate-signal"></div>
