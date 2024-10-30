@@ -6,7 +6,7 @@ export const Hero = () => {
   return (
     <section
       id="Hero"
-      className="w-full h-[80vh] flex flex-col gap-8 md:gap-4 items-center justify-center relative p-2"
+      className="w-full h-[85vh] flex flex-col gap-8 md:gap-4 items-center justify-center relative p-2"
     >
       <Canvas />
       <div className="animate-appear_1 opacity-0">

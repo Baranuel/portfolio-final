@@ -49,7 +49,6 @@ const config = {
           '100%': { opacity:"1" , transform:"translateY(0px)"},
         },
         iconPing: {
-
             '25%': { transform: 'scale(2)', opacity: '0.45'},
             '80%': { transform: 'scale(1)', opacity: '1'}
         },
@@ -58,7 +57,16 @@ const config = {
           '50%': { alignSelf:'start', transform:'translateY(-100%)',},
           '70%': { alignSelf:'start', transform:'translateY(0%)',},
           '100%': { alignSelf:'end', transform:'translateY(100%)'},
-        }},
+        },
+        scroll_first_part: {
+          '0%': { transform: 'translateX(calc(-100% - 128px))' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        scroll_first_part_mobile: {
+          '0%': { transform: 'translateY(calc(100% - 128px))' },
+          '100%': { transform: 'translateY(0%)' },
+        },
+      },
         animation: {
           text: 'text 4s linear infinite',
           pulseBG : 'pulseBG 4s linear infinite',
@@ -67,6 +75,9 @@ const config = {
           appear_1: 'appear 1s ease-in-out forwards',
           appear_2: 'appear 1s ease-in-out 0.2s forwards',
           appear_3: 'appear 1s ease-in-out 0.3s forwards',
+          scroll_first_part: 'scroll_first_part 35s linear infinite',
+          scroll_second_part: 'scroll_first_part 35s linear infinite',
+          scroll_first_part_mobile: 'scroll_first_part_mobile 35s linear infinite',
         },
   
       backgroundImage: {
