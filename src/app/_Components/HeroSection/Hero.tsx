@@ -20,7 +20,7 @@ export const Hero = () => {
         </span>
       </p>
       <Link href="#Work">
-      <button className=" font-pixelify bg-gradient-to-b from-orange-400 to-red-600 border-2 button-primary mt-4 text-xl font-semibold border-slate-700  text-white px-8  py-2 rounded-md  animate-appear_3 opacity-0 button-primary">
+      <button className=" font-pixelify bg-gradient-to-b from-orange-400 to-red-600 border-4 border-slate-800  button-primary mt-4 text-xl font-semibold text-white  px-8  py-2 rounded-md  animate-appear_3 opacity-0 button-primary">
           See Projects
         </button>
       </Link>
