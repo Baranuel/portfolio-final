@@ -4,10 +4,7 @@ export const IntroSign = () => {
   return (
     <section className="flex relative bg-white flex-col items-center justify-center  min-h-[500px] h-fit pb-[100px]  w-full ">
      
-      <div className="h-48 w-[2px] my-2 mb-6   absolute  -top-32  overflow-hidden flex  z-10 border-none  bg-primaryGrey/20 animate-appear_3  ">
-        <div className=" z-0 bg-gradient-to-b  from-orange-700 to-violet-800 w-full h-full animate-signal"></div>
-        <div className=" absolute  z-10 bg-gradient-to-b  from-background via-transparent to-background w-full h-full "></div>
-      </div>
+   
       
       <div className=" relative max-w-[700px] h-fit  bg-gradient-to-t  -translate-y-2 flex flex-col gap-2 justify-center items-center border-primaryBlack/30  rounded-xl p-1">
         <div className="absolute w-full h-1/2 bg-gradient-to-b from-orange-300 via-violet-600 to-red-300 opacity-10 z-0 blur-[220px] -translate-y-2"></div>

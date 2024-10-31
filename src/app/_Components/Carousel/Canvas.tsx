@@ -21,12 +21,11 @@ class Beam {
       centerX + this.distance,
       0
     );
-    gradient.addColorStop(0, 'rgba(255, 140, 0, 1)');
-    gradient.addColorStop(0.1, 'rgba(255, 140, 0, 0.5)');
-    gradient.addColorStop(0.5, 'rgba(255, 140, 0, 0.3)');
-    gradient.addColorStop(0.8, 'rgba(255, 140, 0, 0.1)');
-    gradient.addColorStop(0.9, 'rgba(255, 140, 0, 0.0)');
-    gradient.addColorStop(1, 'rgba(255, 140, 0, 0)');
+    gradient.addColorStop(0, 'rgba(253, 230, 138, 1)');
+    gradient.addColorStop(0.5, 'rgba(253, 230, 138, 0.3)');
+    gradient.addColorStop(0.8, 'rgba(253, 230, 138, 0.1)');
+    gradient.addColorStop(0.9, 'rgba(253, 230, 138, 0.0)');
+    gradient.addColorStop(1, 'rgba(253, 230, 138, 0)');
     return gradient;
   }
 
@@ -50,24 +49,34 @@ class Particle {
   life: number;
   color: string;
   size: number;
+  initialX: number;
 
   constructor(x: number, y: number, color: string) {
+    this.initialX = x;
     this.x = x;
     this.y = y;
-    this.vx = (Math.random() + 0.5) * 0.2 * (Math.random()  * 3);
-    this.vy = (Math.random() - 0.5) * 0.5;
-    this.life = 300;
+    // Randomize initial velocity based on distance from center
+    const distanceMultiplier = Math.random() * 0.3 + 0.1; // Slower near center
+    this.vx = (Math.random() + 0.2) * distanceMultiplier * 3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.life = 250;
     this.color = color;
-    this.size = Math.floor(Math.random() * 3) + 1; // Fixed pixel sizes: 1 or 2
+    this.size = Math.floor(Math.random() * 2.3) + 1;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
-    const opacity = Math.max(0, 1 - (this.x / (ctx.canvas.width * 0.8)));
+    // Calculate distance from initial position
+    const distanceFromCenter = Math.abs(this.x - this.initialX);
+    const maxDistance = ctx.canvas.width * 0.5;
     
-    ctx.globalCompositeOperation = 'lighter';
+    // Exponential falloff for opacity based on distance
+    const opacityFalloff = Math.exp(-distanceFromCenter / (maxDistance * 0.9));
+    const opacity = Math.min(1, opacityFalloff);
+    
+    ctx.globalCompositeOperation = 'lighter'
 
-    // Draw a perfect square for crisp pixels
-    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+    // Draw main particle with distance-based opacity
+    ctx.fillStyle = `rgba(253, 230, 138, 1)`;
     ctx.fillRect(
       Math.floor(this.x), 
       Math.floor(this.y), 
@@ -75,9 +84,9 @@ class Particle {
       this.size
     );
 
-    // Add a single pixel white core for extra brightness
-    if (this.size > 1) {
-      ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 1.5})`;
+    // Brighter core for particles near the center
+    if (this.size > 1 && distanceFromCenter < 50) {
+      ctx.fillStyle = `rgba(253, 250, 238, ${opacity})`;
       ctx.fillRect(
         Math.floor(this.x) + Math.floor(this.size/2), 
         Math.floor(this.y) + Math.floor(this.size/2), 
@@ -88,15 +97,17 @@ class Particle {
   }
 
   update(deltaTime: number) {
-    this.vx += deltaTime * 0.003;
-    this.vy += (Math.random() - 0.5) * deltaTime * 0.003;
-    this.x += this.vx;
+    // Slower acceleration for particles closer to center
+    const distanceFromCenter = Math.abs(this.x - this.initialX);
+    const accelerationFactor = Math.min(1, distanceFromCenter / 100);
+    
+    this.vx += deltaTime * 0.003 * accelerationFactor;
+    this.vy += (Math.random() - 0.5) * deltaTime * 0.002;
+    this.x += this.vx - 0.1;
     this.y += this.vy;
     this.life -= deltaTime;
   }
 }
-
-
 
 export const Canvas = ({isVisible}: {isVisible: boolean}) => {
   
@@ -105,13 +116,11 @@ export const Canvas = ({isVisible}: {isVisible: boolean}) => {
   const lastTimeRef = useRef(0);
   const particleCount = useMotionValue(0);
   const distanceRef = useMotionValue(40);
-  const beamRef = useRef<Beam>(new Beam(4, 275, distanceRef.get()));
-
-
+  const beamRef = useRef<Beam>(new Beam(4, 275 - 8, distanceRef.get()));
 
   useEffect(() => {
     // Animate particle count based on visibility
-    animate(particleCount, isVisible ? 80 : 0, {
+    animate(particleCount, isVisible ? 60 : 0, { // Increased particle count
       duration: 0.5,
       ease: "easeInOut"
     });
@@ -120,8 +129,7 @@ export const Canvas = ({isVisible}: {isVisible: boolean}) => {
       duration: 0.4,
       ease: "linear",
     });
-  }, [isVisible]);
-
+  }, [distanceRef, isVisible, particleCount]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -129,7 +137,6 @@ export const Canvas = ({isVisible}: {isVisible: boolean}) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Disable image smoothing for crisp pixels
     ctx.imageSmoothingEnabled = false;
 
     const particles: Particle[] = particlesRef.current;
@@ -152,15 +159,19 @@ export const Canvas = ({isVisible}: {isVisible: boolean}) => {
       
       const centerX = canvas.width / 2;
       const beamStartY = (canvas.height - beam.height) / 2;
-      for(let i = 0; i < Math.round(particleCount.get()); i++){
-        particles.push(new Particle(centerX, beamStartY + Math.random() * beam.height, 'white'));
+
+      // Create more particles near the center
+      const particlesToCreate = Math.round(particleCount.get());
+      for(let i = 0; i < particlesToCreate; i++) {
+        // Gaussian-like distribution around beam
+        const offset = (Math.random() + Math.random() + Math.random()) / 3;
+        const x = centerX + (offset - 0.5) * 20; // Concentrated around beam
+        particles.push(new Particle(x, beamStartY + Math.random() * beam.height, 'white'));
       }
 
-      // Draw beam
       beam.draw(ctx, centerX, beamStartY);
       beam.update(distanceRef.get());
       
-      // Update and draw particles in single pass
       particles.forEach((particle, i) => {
         particle.update(deltaTime);
         particle.draw(ctx);
@@ -184,7 +195,7 @@ export const Canvas = ({isVisible}: {isVisible: boolean}) => {
       cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', resizeHandler);
     };
-  }, []);
+  }, [distanceRef, particleCount]);
 
   return (
     <canvas 
