@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={pixelify.className}>
   
       <head>
         <link rel="icon" href="/samuel.svg" type="image/svg+xml" />

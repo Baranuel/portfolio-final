@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Canvas } from "./Canvas";
 import { useEffect, useState, useMemo, useRef } from "react";
 
@@ -36,7 +36,6 @@ export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
   const { settings } = CAROUSEL_CONFIG;
   const animationFrameRef = useRef<number>();
-  const lastScrollY = useRef(0);
 
   const checkVisibility = () => {
     const elements = document.querySelectorAll('#moving-element');
@@ -57,15 +56,15 @@ export const Carousel = () => {
     animationFrameRef.current = requestAnimationFrame(checkVisibility);
   };
 
-  // Start checking visibility when component mounts
-  useEffect(() => {
-    checkVisibility();
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, []);
+  // // Start checking visibility when component mounts
+  // useEffect(() => {
+  //   checkVisibility();
+  //   return () => {
+  //     if (animationFrameRef.current) {
+  //       cancelAnimationFrame(animationFrameRef.current);
+  //     }
+  //   };
+  // }, []);
 
   const desktopVariants = useMemo(() => ({
     animate: {
@@ -108,8 +107,12 @@ export const Carousel = () => {
               <div
                 key={index}
                 id="moving-element"
-                className={`w-[${CAROUSEL_CONFIG.dimensions.desktop.width}px] h-[${CAROUSEL_CONFIG.dimensions.desktop.height}px] relative bg-${color}-500`}
-                style={{ '--scroll-speed': '1' } as React.CSSProperties}
+                className={`relative ${color === 'red' ? 'bg-red-500' : 'bg-yellow-500'}`}
+                style={{ 
+                  '--scroll-speed': '1',
+                  width: `${CAROUSEL_CONFIG.dimensions.desktop.width}px`,
+                  height: `${CAROUSEL_CONFIG.dimensions.desktop.height}px`
+                } as React.CSSProperties}
               >
                 {index}
               </div>
@@ -141,8 +144,12 @@ export const Carousel = () => {
               <div
                 key={index}
                 id="moving-element"
-                className={`w-full h-[${CAROUSEL_CONFIG.dimensions.mobile.height}px] relative bg-${color}-500 mb-${gap}px`}
-                style={{ '--scroll-speed': '1' } as React.CSSProperties}
+                className={`w-full relative ${color === 'red' ? 'bg-red-500' : 'bg-yellow-500'}`}
+                style={{ 
+                  '--scroll-speed': '1',
+                  height: `${CAROUSEL_CONFIG.dimensions.mobile.height}px`,
+                  marginBottom: `${gap}px`
+                } as React.CSSProperties}
               >
                 {index}
               </div>
