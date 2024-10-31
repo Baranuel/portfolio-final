@@ -47,9 +47,9 @@ html {
 }
 
 .clip-path-first-mobile {
-  clip-path: inset(65% 0 0 0);
+  clip-path: inset(20% 0 0 0);
 }
 
 .clip-path-second-mobile {
-  clip-path: inset(0 0 65% 0);
+  clip-path: inset(0 0 80% 0);
 }
