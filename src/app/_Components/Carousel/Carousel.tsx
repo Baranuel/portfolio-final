@@ -57,14 +57,14 @@ export const Carousel = () => {
   };
 
   // // Start checking visibility when component mounts
-  // useEffect(() => {
-  //   checkVisibility();
-  //   return () => {
-  //     if (animationFrameRef.current) {
-  //       cancelAnimationFrame(animationFrameRef.current);
-  //     }
-  //   };
-  // }, []);
+  useEffect(() => {
+    checkVisibility();
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
 
   const desktopVariants = useMemo(() => ({
     animate: {
