@@ -39,11 +39,11 @@ html {
 }
 
 .clip-path-first {
-  clip-path: inset(0 65% 0 0);
+  clip-path: inset(0 50% 0 0);
 }
 
 .clip-path-second {
-  clip-path: inset(0 0 0 35%);
+  clip-path: inset(0 0 0 50%);
 }
 
 .clip-path-first-mobile {

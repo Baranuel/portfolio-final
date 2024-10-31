@@ -106,13 +106,11 @@ export const Carousel = () => {
   return (
     <section className="w-full h-[450px] py-2 gap-2 bg-white flex flex-col">
       <h1 className="text-4xl text-center font-pixelify">Process</h1>
+      <div className="relative h-full flex-1 overflow-hidden ">
       <div className="relative w-full h-[50px]">
-      <div className="relative top-0 left-0 w-full h-full">
-        <Image className=" absolute top-0 left-0 z-50" src='laser_base.svg' alt="laser" width={window.innerWidth} height={50} />
+        <Image className="" src='chip.svg' alt="laser" fill />
+      </div>
         <Canvas />
-      </div>
-      </div>
-      <div className="relative h-full flex-1 overflow-hidden">
         {/* Desktop Carousel */}
         <CarouselStripe
           color="yellow"

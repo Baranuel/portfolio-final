@@ -1,143 +1,153 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
+
+class Beam {
+  width: number;
+  height: number;
+  distance: number;
+
+  constructor(width: number = 4, height: number = 275, distance: number = 30) {
+    this.width = width;
+    this.height = height;
+    this.distance = distance;
+  }
+
+  createGradient(ctx: CanvasRenderingContext2D, centerX: number) {
+    const gradient = ctx.createLinearGradient(
+      centerX - this.width/2,
+      0,
+      centerX + this.distance,
+      0
+    );
+    gradient.addColorStop(0, 'rgba(0, 255, 255, 1)');
+    gradient.addColorStop(0.1, 'rgba(0, 255, 255, 0.5)');
+    gradient.addColorStop(0.5, 'rgba(0, 255, 255, 0.2)');
+    gradient.addColorStop(0.8, 'rgba(0, 255, 255, 0.1)');
+    gradient.addColorStop(0.9, 'rgba(0, 255, 255, 0.05)');
+    gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
+    return gradient;
+  }
+
+  draw(ctx: CanvasRenderingContext2D, centerX: number, startY: number) {
+    const gradient = this.createGradient(ctx, centerX);
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = '#0fffff';
+    ctx.fillStyle = gradient;
+    ctx.fillRect(centerX - this.width/2, startY, this.width + this.distance, this.height);
+  }
+}
+
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  color: string;
+
+  constructor(x: number, y: number, color: string) {
+    this.x = x;
+    this.y = y;
+    this.vx = Math.random() + 0.5  ;
+    this.vy = (Math.random() - 0.5) * 1.5;
+    this.life = 100;
+    this.color = color;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.shadowBlur = 10;
+    ctx.globalCompositeOperation = 'lighter';
+
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, Math.random() * 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+
+    // Glow effect
+    ctx.beginPath(); 
+    ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+    ctx.fill();
+  }
+
+  update(deltaTime: number) {
+    this.vx +=  deltaTime * 0.01
+    this.vy += (Math.random() - 0.5) * deltaTime * 0.01
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= deltaTime 
+  }
+}
 
 export const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const lastTimeRef = useRef(0);
+  const beamRef = useRef<Beam>(new Beam());
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d'); // Optimize for non-transparent canvas
     if (!ctx) return;
+
+    const particles: Particle[] = particlesRef.current;
+    const beam = beamRef.current;
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
 
-    const particles: {x: number, y: number, vx: number, vy: number, life: number, size: number, hue: number}[] = [];
-    const createParticle = () => {
-      const centerX = canvas.width / 2;
-      const y = 0; // Start from top
-      const spread = Math.random() < 0.3 ? 30 : 10; // Reduced spread
-
-      const particle = {
-        x: centerX + (Math.random() - 0.3) * spread,
-        y,
-        vx: (Math.random() - 0.5) * 2, // Increased horizontal velocity
-        vy: Math.random() * 10 + 5, // Increased downward velocity
-        life: 1.0, // Increased life
-        size: Math.random() * 1 + 1, // Larger particles
-        hue: Math.random() * 60 + 0
-      };
-      particles.push(particle);
-    };
-
-    let startTime = Date.now();
-    const growthDuration = 1000; // 1 second for the beam to grow
-
-    const animate = () => {
+    const animate = (currentTime: number) => {
       if (!ctx) return;
       
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
-      const growthProgress = Math.min(elapsed / growthDuration, 1);
+      const deltaTime = currentTime - lastTimeRef.current;
+      lastTimeRef.current = currentTime;
       
-      const time = currentTime * 0.001;
-      const glowPulse = Math.sin(time * 3) * 0.1 + 1;
-
-      // Calculate beam width based on growth progress
-      const maxBeamWidth = 30; // Reduced from 50
-      const currentBeamWidth = maxBeamWidth * growthProgress;
-      const maxCoreWidth = 2; // Reduced from 4
-      const currentCoreWidth = maxCoreWidth * growthProgress;
-
-      // Main beam
-      const mainGradient = ctx.createLinearGradient(
-        canvas.width / 2 - 20 * growthProgress, 0, // Reduced from 40
-        canvas.width / 2 + 20 * growthProgress, 0  // Reduced from 40
-      );
-      mainGradient.addColorStop(0.2, `rgba(255, 150, 50, ${0.8 * glowPulse})`);
-      mainGradient.addColorStop(0.5, `rgba(255, 255, 200, ${0.9 * glowPulse})`);
-      mainGradient.addColorStop(0.8, `rgba(255, 150, 50, ${0.8 * glowPulse})`);
-
-      ctx.fillStyle = mainGradient;
-      ctx.fillRect(canvas.width / 2 - currentBeamWidth/2 , 0, currentBeamWidth, canvas.height);
-
-      // Core beam with stronger at top
-      const coreHeight = canvas.height;
-      const gradient = ctx.createLinearGradient(0, 0, 0, coreHeight);
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 1)'); // Full opacity at top
-      gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.8)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.4)'); // Fade out at bottom
-
-      ctx.fillStyle = gradient;
-      ctx.fillRect(canvas.width / 2 - currentCoreWidth/2, 0, currentCoreWidth, coreHeight);
-
-      // Top source glow
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, 0, 10 * growthProgress, 0, Math.PI * 2); // Reduced from 15
-      ctx.fillStyle = `rgba(255, 255, 200, ${0.8 * glowPulse})`;
-      ctx.fill();
-
-      // Only create particles after beam has started growing
-      if (growthProgress > 0.3) {
-        // Create many more particles
-        for (let i = 0; i < 5; i++) {
-          if (Math.random() < 0.9) createParticle();
-        }
-
-        for (let i = particles.length - 1; i >= 0; i--) {
-          const p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          p.life -= 0.01; // Slower life reduction
-          
-          p.vx *= 0.99; // Slow down horizontal movement
-          p.vy *= 0.99; // Slight slowdown of vertical movement
-
-          if (p.y > canvas.height - 10) {
-            particles.splice(i, 1);
-            continue;
-          }
-
-          if (p.life <= 0) {
-            particles.splice(i, 1);
-            continue;
-          }
-
-          // Draw particles with glow effect
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size + 2, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${p.hue}, 100%, 70%, ${p.life * 0.3})`;
-          ctx.fill();
-          
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${p.hue}, 100%, 70%, ${p.life})`;
-          ctx.fill();
-        }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const centerX = canvas.width / 2;
+      const beamStartY = (canvas.height - beam.height) / 2;
+      for(let i = 0; i < 15; i++){
+        particles.push(new Particle(centerX, beamStartY + Math.random() * beam.height, 'white'));
       }
 
+      // Draw beam
+      // beam.draw(ctx, centerX, beamStartY);
+      
+      // Update and draw particles in single pass
+      particles.forEach((particle, i) => {
+        particle.update(deltaTime);
+        particle.draw(ctx);
+        
+        if (particle.life <= 0) {
+          particles.splice(i, 1);
+        }
+      }); 
+      
       requestAnimationFrame(animate);
     };
 
-    animate();
+    const animationFrame = requestAnimationFrame(animate);
+
+    const resizeHandler = () => {
+      requestAnimationFrame(resizeCanvas);
+    };
+    window.addEventListener('resize', resizeHandler);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', resizeHandler);
     };
   }, []);
 
   return (
     <canvas 
       ref={canvasRef}
-      className="w-full h-[350px] absolute top-0 -left-[15%] translate-y-[5%] z-40"
+      className="w-full h-full absolute top-0 left-0 z-40"
       style={{ imageRendering: 'pixelated' }}
     />
   );
