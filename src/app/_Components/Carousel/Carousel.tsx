@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Canvas } from "./Canvas";
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
@@ -25,11 +24,12 @@ const CAROUSEL_CONFIG = {
   },
   dimensions: {
     desktop: {
-      width: 500,
+      width: 475,
       height: 275,
     },
     mobile: {
       height: 200,
+      width: 300,
     },
   },
 } as const;
@@ -38,6 +38,9 @@ export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
   const { settings } = CAROUSEL_CONFIG;
   const animationFrameRef = useRef<number>();
+  const beamHeight = typeof window !== 'undefined' && window.innerWidth > 768 ? CAROUSEL_CONFIG.dimensions.desktop.height : CAROUSEL_CONFIG.dimensions.mobile.height;
+
+  
 
   const checkVisibility = useCallback(() => {
     const elements = document.querySelectorAll('#moving-element');
@@ -79,16 +82,7 @@ export const Carousel = () => {
     },
   }), [settings.gap, settings.duration]);
 
-  const mobileVariants = useMemo(() => ({
-    animate: {
-      y: [`calc(-100% - ${settings.gapMobile}px)`, "0"],
-      transition: {
-        duration: settings.duration,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    },
-  }), [settings.gapMobile, settings.duration]);
+
 
   const CarouselStripe = useMemo(() => {
     const StripeComponent = ({ clipPathClass, gap, version }: CarouselStripeProps) => (
@@ -103,23 +97,22 @@ export const Carousel = () => {
           <motion.div
             key={i}
             variants={desktopVariants}
-            initial="initial"
+            initial="initial" 
             animate="animate"
             style={{ gap: `${gap}px` }}
-            className="w-max h-full flex items-center"
+            className="w-max h-full flex items-center cursor-grab active:cursor-grabbing"
           >
             {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
               <div
                 key={index}
                 id="moving-element"
-                className={cn(`relative rounded-md  border-4 border-black`, {
+                className={cn("relative rounded-md border-4 border-black",
+                  `w-[475px] h-[275px]`,
+                  `md:w-[300px] md:h-[200px]`,
+                  {
                   'bg-amber-200': version === 'undiscovered',
                   'bg-red-500': version === 'discovered',
                 })}
-                style={{ 
-                  width: `${CAROUSEL_CONFIG.dimensions.desktop.width}px`,
-                  height: `${CAROUSEL_CONFIG.dimensions.desktop.height}px`
-                } as React.CSSProperties}
               >
                 {index}
               </div>
@@ -128,67 +121,23 @@ export const Carousel = () => {
         ))}
       </div>
     );
-    StripeComponent.displayName = 'CarouselStripe';
     return StripeComponent;
   }, [desktopVariants]);
 
-  const MobileCarouselStripe = useMemo(() => {
-    const MobileStripeComponent = ({ version, clipPathClass, gap }: CarouselStripeProps) => (
-      <div
-        style={{ gap: `${gap}px` }}
-        className={cn(
-          "absolute w-full h-full md:flex hidden md:flex-col p-2",
-          clipPathClass
-        )}
-      >
-        {Array.from({ length: CAROUSEL_CONFIG.itemCounts.stripes }).map((_, i) => (
-          <motion.div
-            key={i}
-            variants={mobileVariants}
-            initial="initial"
-            animate="animate"
-            style={{ gap: `${gap}px` }}
-            className="w-full flex flex-col items-center"
-          >
-            {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
-              <div
-                key={index}
-                id="moving-element"
-                className={cn(`w-full relative`, {
-                  'bg-red-500': version === 'discovered',
-                  'bg-amber-200': version === 'undiscovered',
-                })}
-                style={{ 
-                  '--scroll-speed': '1',
-                  height: `${CAROUSEL_CONFIG.dimensions.mobile.height}px`,
-                  marginBottom: `${gap}px`
-                } as React.CSSProperties}
-              >
-                {index}
-              </div>
-            ))}
-          </motion.div>
-        ))}
-      </div>
-    );
-    MobileStripeComponent.displayName = 'MobileCarouselStripe';
-    return MobileStripeComponent;
-  }, [mobileVariants]);
 
   return (
-    <section className={cn("w-full h-[450px] py-2 gap-2 bg-white flex flex-col")}>
+    <section className={cn("w-full h-[450px] md:h-[400px] py-2 gap-2 bg-white flex flex-col")}>
       <h1 
         onClick={() => setIsVisible(!isVisible)} 
-        className={cn("text-4xl text-center font-pixelify")}
+        className={cn("text-4xl text-center font-pixelify  ")}
       >
         Process
       </h1>
-        <div className="w-full h-[50px]  relative ">
-          {/* <SvgChip  /> */}
-          <Image src='/chip.svg' alt='chip' fill />
-        </div>
       <div className="relative h-full flex-1 overflow-hidden">
-        <Canvas isVisible={isVisible} />
+      <div className="w-full h-[60px]  relative ">
+        <SvgChip isVisible={isVisible} />
+      </div>
+        <Canvas isVisible={isVisible} beamHeight={beamHeight} />
         
         {/* Desktop Carousel */}
         <CarouselStripe
@@ -201,18 +150,7 @@ export const Carousel = () => {
           clipPathClass="clip-path-second"
           gap={settings.gap}
         />
-
-        {/* Mobile Carousel */}
-        {/* <MobileCarouselStripe
-          color="yellow"
-          clipPathClass="clip-path-first-mobile"
-          gap={settings.gapMobile}
-        />
-        <MobileCarouselStripe
-          color="red"
-          clipPathClass="clip-path-second-mobile"
-          gap={settings.gapMobile} */}
-        {/* /> */}
+      
       </div>
     </section>
   );

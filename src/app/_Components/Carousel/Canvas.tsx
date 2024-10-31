@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { useMotionValue, animate } from 'framer-motion';
+import { SvgChip } from './SvgChip';
 
 class Beam {
   width: number;
@@ -109,14 +110,14 @@ class Particle {
   }
 }
 
-export const Canvas = ({isVisible}: {isVisible: boolean}) => {
+export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight: number}) => {
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const lastTimeRef = useRef(0);
   const particleCount = useMotionValue(0);
   const distanceRef = useMotionValue(40);
-  const beamRef = useRef<Beam>(new Beam(4, 275 - 8, distanceRef.get()));
+  const beamRef = useRef<Beam>(new Beam(4, beamHeight - 8, distanceRef.get()));
 
   useEffect(() => {
     // Animate particle count based on visibility
@@ -202,6 +203,7 @@ export const Canvas = ({isVisible}: {isVisible: boolean}) => {
       ref={canvasRef}
       className="w-full h-full absolute top-0 left-0 z-40"
       style={{ imageRendering: 'pixelated' }}
-    />
+      />
+    
   );
 };
