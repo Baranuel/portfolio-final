@@ -81,12 +81,14 @@ export default function RootLayout({
       <body className={cn(inter.variable, pixelify.variable, dmSans.variable, robotoMono.variable)}>
         <ProjectPreviewOutPortal />
       <Navigation />
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          {children}
+        <SpeedInsights />
+          </ReactQueryProvider>
         <footer className='bg-stone-950 min-h-[17vh]  border-t-[1px] border-stone-700 flex items-center justify-center'>
         <span className='text-stone-300'>Designed and Developed by Samuel Baran </span>
         </footer>
         </body>
-        <SpeedInsights />
     </html>
   )
 }
