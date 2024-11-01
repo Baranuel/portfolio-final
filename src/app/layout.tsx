@@ -5,6 +5,7 @@ import { Navigation } from './_Components/Navigation/Navigation'
 import ReactQueryProvider from './Providers/ReactQueryProvider'
 import { ProjectPreviewOutPortal } from './_Components/WorkSection/ProjectPreviewOutPortal'
 import { cn } from '@/lib/utils'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 const inter = Inter({
@@ -67,6 +68,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <html lang="en" className={cn(inter.variable, pixelify.variable, robotoMono.variable)}>
   
@@ -84,6 +86,7 @@ export default function RootLayout({
         <span className='text-stone-300'>Designed and Developed by Samuel Baran </span>
         </footer>
         </body>
+        <SpeedInsights />
     </html>
   )
 }
