@@ -73,7 +73,7 @@ export const Carousel = () => {
 
 
   const CarouselStripe = useMemo(() => {
-    return ({ clipPathClass, version }: CarouselStripeProps) => (
+    const Stripe =  ({ clipPathClass, version }: CarouselStripeProps) => (
       <div
         className={cn(
           "absolute top-0 left-0 gap-[50px] whitespace-nowrap w-full h-full flex ",
@@ -107,6 +107,9 @@ export const Carousel = () => {
         ))}
       </div>
     );
+    Stripe.displayName = 'CarouselStripe'
+    return Stripe
+
   }, [desktopVariants]);
 
 
