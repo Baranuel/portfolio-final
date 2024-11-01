@@ -117,6 +117,8 @@ const config = {
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
         pixelify: ['var(--font-pixelify-sans)', 'sans-serif'],
+        robotoMono: ['var(--font-roboto-mono)', 'monospace'],
+        dmSans: ['var(--font-dm-sans)', 'sans-serif'],
       },
       
     },

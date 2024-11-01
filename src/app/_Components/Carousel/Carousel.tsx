@@ -9,38 +9,26 @@ import { SvgChip } from "./SvgChip";
 interface CarouselStripeProps {
   clipPathClass: string;
   version: "undiscovered" | "discovered";
-  gap: number;
 }
 
 const CAROUSEL_CONFIG = {
-  settings: {
-    gap: 50,
-    gapMobile: 100,
-    duration: 35,
-  },
   itemCounts: {
     stripes: 2,
     items: 4,
   },
-  dimensions: {
-    desktop: {
-      width: 475,
-      height: 275,
-    },
-    mobile: {
-      height: 200,
-      width: 300,
-    },
-  },
 } as const;
+
+
 
 export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const { settings } = CAROUSEL_CONFIG;
   const animationFrameRef = useRef<number>();
-  const beamHeight = typeof window !== 'undefined' && window.innerWidth > 768 ? CAROUSEL_CONFIG.dimensions.desktop.height : CAROUSEL_CONFIG.dimensions.mobile.height;
 
-  
+  // Carousel Settings
+  const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? 275 : 200;
+  const ANIMATION_DURATION = 20;
+  const ITEM_GAP = 40;
+
 
   const checkVisibility = useCallback(() => {
     const elements = document.querySelectorAll('#moving-element');
@@ -73,23 +61,22 @@ export const Carousel = () => {
 
   const desktopVariants = useMemo(() => ({
     animate: {
-      x: [`calc(-100% - ${settings.gap}px)`, "0"],
+      x: [`calc(-100% - ${ITEM_GAP}px)`, "0"],
       transition: {
-        duration: settings.duration,
+        duration: ANIMATION_DURATION,
         ease: "linear",
         repeat: Infinity,
       },
     },
-  }), [settings.gap, settings.duration]);
+  }), [ITEM_GAP, ANIMATION_DURATION]);
 
 
 
   const CarouselStripe = useMemo(() => {
-    const StripeComponent = ({ clipPathClass, gap, version }: CarouselStripeProps) => (
+    return ({ clipPathClass, version }: CarouselStripeProps) => (
       <div
-        style={{ gap: `${gap}px` }}
         className={cn(
-          "absolute top-0 left-0 whitespace-nowrap w-full h-full flex ",
+          "absolute top-0 left-0 gap-[50px] whitespace-nowrap w-full h-full flex ",
           clipPathClass
         )}
       >
@@ -99,8 +86,7 @@ export const Carousel = () => {
             variants={desktopVariants}
             initial="initial" 
             animate="animate"
-            style={{ gap: `${gap}px` }}
-            className="w-max h-full flex items-center cursor-grab active:cursor-grabbing"
+            className="w-max h-full flex items-center cursor-grab gap-[50px] active:cursor-grabbing"
           >
             {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
               <div
@@ -110,7 +96,7 @@ export const Carousel = () => {
                   `w-[475px] h-[275px]`,
                   `md:w-[300px] md:h-[200px]`,
                   {
-                  'bg-amber-200': version === 'undiscovered',
+                  'bg-amber-300': version === 'undiscovered',
                   'bg-red-500': version === 'discovered',
                 })}
               >
@@ -121,7 +107,6 @@ export const Carousel = () => {
         ))}
       </div>
     );
-    return StripeComponent;
   }, [desktopVariants]);
 
 
@@ -137,18 +122,15 @@ export const Carousel = () => {
       <div className="w-full h-[60px]  relative ">
         <SvgChip isVisible={isVisible} />
       </div>
-        <Canvas isVisible={isVisible} beamHeight={beamHeight} />
+        <Canvas isVisible={isVisible} beamHeight={BEAM_HEIGHT} />
         
-        {/* Desktop Carousel */}
         <CarouselStripe
           version='undiscovered'
           clipPathClass="clip-path-first"
-          gap={settings.gap}
         />
         <CarouselStripe
           version='discovered'
           clipPathClass="clip-path-second"
-          gap={settings.gap}
         />
       
       </div>

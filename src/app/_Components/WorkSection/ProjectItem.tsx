@@ -31,7 +31,7 @@ export const ProjectItem = ({
       >
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={` rounded-md px-2 sm:px-0 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
+          className={` rounded-md relative px-2 sm:px-0 w-full h-16 min-h-16 overflow flex gap-8  xl:gap-12 md:gap-6 sm:gap-4 items-center hover:cursor-pointer hover:scale-110 sm:hover:scale-100 transition-transform transition-duration-200 `}
         >
           <span className="text-text sm:text-[14px]">{project.year}</span>
           <span className=" flex flex-1 items-center justify-start min-w-[200px] sm:min-w-0 text-[20px] sm:text-[18px] font-bold ">
@@ -56,7 +56,7 @@ export const ProjectItem = ({
         {/* This is the start of expanded view */}
 
         <motion.div
-          className={` bg-gradient-to-b from-transparent overflow-hidden to-zinc-100/30 h-auto ${
+          className={` bg-gradient-to-b relative from-transparent overflow-hidden to-zinc-100/30 h-auto ${
             !isOpen ? "max-h-0" : "max-h-[400px]"
           } transition-all duration-300  `}
         >

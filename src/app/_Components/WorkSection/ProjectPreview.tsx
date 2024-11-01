@@ -61,7 +61,6 @@ export const ProjectPreview = ({
     } else {
       document.body.style.overflow = "unset";
       isNotPresentAnimation();
-      // restBrowserHistory()
     }
   }, [isPresent, isPresentAnimation, isNotPresentAnimation, safeToRemove]);
 
