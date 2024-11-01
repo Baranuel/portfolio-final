@@ -10,7 +10,7 @@ export const Hero = () => {
     >
       <Canvas />
       <div className="animate-appear_1 opacity-0">
-        <Image src={"/samuel.svg"} alt="hero-image" width={475} height={50} />
+        <Image priority src={"/samuel.svg"} alt="hero-image" width={475} height={50} />
       </div>
       <p className="max-w-[22em] font-dmSans text-center text-3xl sm:text-2xl text-slate-800 leading-[1.2] text-balance animate-appear_2 opacity-0 ">
         <strong className="mr-1">React Developer</strong>
