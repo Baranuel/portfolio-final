@@ -14,7 +14,7 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const beamRef = useRef<Beam>(new Beam(4, beamHeight - 8, distanceRef.get()));
+  const beamRef = useRef<Beam>(new Beam(4, beamHeight, distanceRef.get()));
 
   useEffect(() => {
     // Animate particle count based on visibility
@@ -65,7 +65,7 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
 
       // Draw beam
       beam.draw(ctx, centerX, beamStartY);
-      beam.update(distanceRef.get());
+      beam.update(distanceRef.get(), beamHeight);
       
       particles.forEach((particle, i) => {
         particle.update(deltaTime);
@@ -90,12 +90,12 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
       cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', resizeHandler);
     };
-  }, [distanceRef, particleCount]);
+  }, [beamHeight, distanceRef, particleCount]);
 
   return (
     <canvas 
       ref={canvasRef}
-      className="w-full h-full absolute top-0 left-0 z-40"
+      className="w-full h-full min-h-[300px] absolute top-0 left-0 z-40"
       style={{ imageRendering: 'crisp-edges' }}
       />
     

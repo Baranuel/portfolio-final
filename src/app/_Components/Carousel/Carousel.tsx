@@ -24,8 +24,9 @@ export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
   const animationFrameRef = useRef<number>();
 
+
   // Carousel Settings
-  const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? 275 : 200;
+  const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? (275-8) :(200 - 8);
   const ANIMATION_DURATION = 20;
   const ITEM_GAP = 40;
 

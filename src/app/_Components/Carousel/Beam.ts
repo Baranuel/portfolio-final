@@ -26,11 +26,12 @@ export class Beam {
       return gradient;
     }
   
-    update(distance: number) {
+    update(distance: number, height: number) {
       this.distance = distance;
+      this.height = height;
     }
   
-    draw(ctx: CanvasRenderingContext2D, centerX: number, startY: number) {
+    draw(ctx: CanvasRenderingContext2D, centerX: number, startY: number, ) {
       const gradient = this.createGradient(ctx, centerX)
       ctx.fillStyle = gradient;
       ctx.globalAlpha = this.opacity;

@@ -77,7 +77,7 @@ export default function RootLayout({
         <link rel="icon" href="/samuel.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/samuel.svg" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
-        <link rel="preload" href="/samuel.svg" as="image" />
+        <link rel="preload"  href="/samuel.svg" as="image" />
       </head>
   
       <body className={cn(inter.variable, pixelify.variable, dmSans.variable, robotoMono.variable)}>
