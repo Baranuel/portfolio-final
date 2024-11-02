@@ -18,11 +18,11 @@ export class Beam {
         centerX + this.distance,
         0
       );
-      gradient.addColorStop(0, 'rgba(253, 230, 138, 1)');
-      gradient.addColorStop(0.5, 'rgba(253, 230, 138, 0.3)');
-      gradient.addColorStop(0.8, 'rgba(253, 230, 138, 0.1)');
-      gradient.addColorStop(0.9, 'rgba(253, 230, 138, 0.0)');
-      gradient.addColorStop(1, 'rgba(253, 230, 138, 0)');
+      gradient.addColorStop(0, 'rgba(252, 211, 77, 1)');
+      gradient.addColorStop(0.5, 'rgba(252, 211, 77, 0.7)');
+      gradient.addColorStop(0.8, 'rgba(252, 211, 77, 0.1)');
+      gradient.addColorStop(0.9, 'rgba(252, 211, 77, 0.0)');
+      gradient.addColorStop(1, 'rgba(252, 211, 77, 0)');
       return gradient;
     }
   

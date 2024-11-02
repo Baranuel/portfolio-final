@@ -10,7 +10,7 @@ export class Particle {
   
     constructor(x: number, y: number, color: string) {
       this.initialX = x;
-      this.x = x;
+      this.x = x
       this.y = y;
       // Randomize initial velocity based on distance from center
       const distanceMultiplier = Math.random() * 0.3 + 0.1; // Slower near center
@@ -22,10 +22,9 @@ export class Particle {
     }
   
     draw(ctx: CanvasRenderingContext2D) {
-      
-      ctx.globalCompositeOperation = 'lighter'
-      // Draw main particle with distance-based opacity
-      ctx.fillStyle = `rgba(253, 230, 138, 1)`;
+      // ctx.globalCompositeOperation = 'lighter'
+
+      ctx.fillStyle = this.color;
       ctx.fillRect(
         Math.floor(this.x), 
         Math.floor(this.y), 

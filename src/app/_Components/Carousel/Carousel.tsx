@@ -27,8 +27,8 @@ export const Carousel = () => {
 
   // Carousel Settings
   const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? (275-8) :(200 - 8);
-  const ANIMATION_DURATION = 20;
-  const ITEM_GAP = 40;
+  const ANIMATION_DURATION = 25;
+  const ITEM_GAP = 60;
 
 
   const checkVisibility = useCallback(() => {
@@ -77,7 +77,7 @@ export const Carousel = () => {
     const Stripe =  ({ clipPathClass, version }: CarouselStripeProps) => (
       <div
         className={cn(
-          "absolute top-0 left-0 gap-[50px] whitespace-nowrap w-full h-full flex ",
+          "absolute top-0 left-0 gap-[60px] whitespace-nowrap w-full h-full flex ",
           clipPathClass
         )}
       >
@@ -87,7 +87,7 @@ export const Carousel = () => {
             variants={desktopVariants}
             initial="initial" 
             animate="animate"
-            className="w-max h-full flex items-center cursor-grab gap-[50px] active:cursor-grabbing"
+            className="w-max h-full flex items-center cursor-grab gap-[60px] active:cursor-grabbing"
           >
             {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
               <div

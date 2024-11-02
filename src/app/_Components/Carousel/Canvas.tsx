@@ -14,17 +14,17 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const beamRef = useRef<Beam>(new Beam(4, beamHeight, distanceRef.get()));
+  const beamRef = useRef<Beam>(new Beam(1, beamHeight, distanceRef.get()));
 
   useEffect(() => {
     // Animate particle count based on visibility
     animate(particleCount, isVisible ? 60 : 0, { // Increased particle count
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut"
     });
 
-    animate(distanceRef, isVisible ? 20 : 0, {
-      duration: 0.4,
+    animate(distanceRef, isVisible ? 1 : 0, {
+      duration: 0.2,
       ease: "linear",
     });
   }, [distanceRef, isVisible, particleCount]);
@@ -58,14 +58,14 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
       for(let i = 0; i < particlesToCreate; i++) {
         
         const offset = (Math.random() + Math.random() + Math.random()) / 3; // makes particles more concentrated around the center
-        const x = centerX + (offset - 0.5) * 20;
+        const x = centerX + (offset - 0.5) * 2;
 
-        particles.push(new Particle(x, beamStartY + (Math.random() * beam.height), 'white'));
+        particles.push(new Particle(x, beamStartY + (Math.random() * beam.height), 'rgba(252, 211, 77, 1)'));
       }
 
       // Draw beam
-      beam.draw(ctx, centerX, beamStartY);
       beam.update(distanceRef.get(), beamHeight);
+      beam.draw(ctx, centerX, beamStartY);
       
       particles.forEach((particle, i) => {
         particle.update(deltaTime);
