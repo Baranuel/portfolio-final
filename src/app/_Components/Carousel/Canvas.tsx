@@ -11,6 +11,8 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
   const lastTimeRef = useRef(0);
   const particleCount = useMotionValue(0);
   const distanceRef = useMotionValue(20);
+
+  const beamOpacity = useMotionValue(1);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
@@ -23,18 +25,19 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
       ease: "easeInOut"
     });
 
-    animate(distanceRef, isVisible ? 1 : 0, {
-      duration: 0.2,
+    animate(distanceRef, isVisible ? 10 : 0, {
+      duration: 0.3,
       ease: "linear",
     });
-  }, [distanceRef, isVisible, particleCount]);
+
+
+  }, [beamOpacity, distanceRef, isVisible, particleCount]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
     const particles: Particle[] = particlesRef.current;
     const beam: Beam = beamRef.current;
 
@@ -60,22 +63,21 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
         const offset = (Math.random() + Math.random() + Math.random()) / 3; // makes particles more concentrated around the center
         const x = centerX + (offset - 0.5) * 2;
 
-        particles.push(new Particle(x, beamStartY + (Math.random() * beam.height), 'rgba(252, 211, 77, 1)'));
+        particles.push(new Particle(x, beamStartY + (Math.random() * beam.height) , 'rgba(252, 211, 77, 1)'));
       }
-
-      // Draw beam
-      beam.update(distanceRef.get(), beamHeight);
-      beam.draw(ctx, centerX, beamStartY);
-      
       particles.forEach((particle, i) => {
         particle.update(deltaTime);
         particle.draw(ctx);
-        
-        if (particle.life <= 0) {
+        if(particle.y > beamStartY + beam.height || particle.life <= 0) {
           particles.splice(i, 1);
         }
       }); 
       
+      
+            // // Draw beam
+            // beam.update(distanceRef.get(), beamHeight);
+            // beam.draw(ctx, centerX, beamStartY, beamOpacity.get());
+            
       requestAnimationFrame(animate);
     };
 
@@ -95,7 +97,7 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
   return (
     <canvas 
       ref={canvasRef}
-      className="w-full h-full min-h-[300px] absolute top-0 left-0 z-40"
+      className="w-full h-full min-h-[300px] absolute top-0 left-0 z-20"
       style={{ imageRendering: 'crisp-edges' }}
       />
     

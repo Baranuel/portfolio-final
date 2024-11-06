@@ -10,15 +10,15 @@ export class Particle {
   
     constructor(x: number, y: number, color: string) {
       this.initialX = x;
-      this.x = x
+      this.x = x - 1
       this.y = y;
       // Randomize initial velocity based on distance from center
       const distanceMultiplier = Math.random() * 0.3 + 0.1; // Slower near center
       this.vx = (Math.random() + 0.2) * distanceMultiplier * 3 / 1.5;
       this.vy = (Math.random() - 0.5) * 0.003;
-      this.life = 350;
+      this.life = 450;
       this.color = color;
-      this.size = Math.floor(Math.random() * 2.3) + 1;
+      this.size = Math.floor(Math.random() * 2.5) + 1;
     }
   
     draw(ctx: CanvasRenderingContext2D) {

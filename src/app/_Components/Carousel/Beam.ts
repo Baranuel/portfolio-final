@@ -19,10 +19,9 @@ export class Beam {
         0
       );
       gradient.addColorStop(0, 'rgba(252, 211, 77, 1)');
-      gradient.addColorStop(0.5, 'rgba(252, 211, 77, 0.7)');
-      gradient.addColorStop(0.8, 'rgba(252, 211, 77, 0.1)');
-      gradient.addColorStop(0.9, 'rgba(252, 211, 77, 0.0)');
-      gradient.addColorStop(1, 'rgba(252, 211, 77, 0)');
+      gradient.addColorStop(0.1, 'rgba(252, 211, 77, 0.7)');
+      gradient.addColorStop(0.5, 'rgba(255, 255, 255, 1)');
+      gradient.addColorStop(0.6, 'rgba(252, 211, 77, 0.7)');
       return gradient;
     }
   
@@ -31,10 +30,10 @@ export class Beam {
       this.height = height;
     }
   
-    draw(ctx: CanvasRenderingContext2D, centerX: number, startY: number, ) {
+    draw(ctx: CanvasRenderingContext2D, centerX: number, startY: number, opacity: number) {
       const gradient = this.createGradient(ctx, centerX)
       ctx.fillStyle = gradient;
-      ctx.globalAlpha = this.opacity;
-      ctx.fillRect(centerX - this.width/2, startY, this.width + this.distance, this.height);
+      ctx.globalAlpha = opacity;
+      ctx.fillRect(centerX - this.width/2 - 5, startY, this.width + this.distance, this.height);
     }
 }
