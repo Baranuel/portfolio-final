@@ -16,9 +16,9 @@ export class Particle {
       const distanceMultiplier = Math.random() * 0.3 + 0.1; // Slower near center
       this.vx = (Math.random() + 0.2) * distanceMultiplier * 3 / 1.5;
       this.vy = (Math.random() - 0.5) * 0.003;
-      this.life = 450;
+      this.life = 500;
       this.color = color;
-      this.size = Math.floor(Math.random() * 2.5) + 1;
+      this.size = Math.floor(Math.random() * 2.5) + 1.5;
     }
   
     draw(ctx: CanvasRenderingContext2D) {

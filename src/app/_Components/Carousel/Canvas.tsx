@@ -25,12 +25,6 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
       ease: "easeInOut"
     });
 
-    animate(distanceRef, isVisible ? 10 : 0, {
-      duration: 0.3,
-      ease: "linear",
-    });
-
-
   }, [beamOpacity, distanceRef, isVisible, particleCount]);
 
   useEffect(() => {
@@ -68,7 +62,7 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
       particles.forEach((particle, i) => {
         particle.update(deltaTime);
         particle.draw(ctx);
-        if(particle.y > beamStartY + beam.height || particle.life <= 0) {
+        if(particle.y < beamStartY || particle.y > beamStartY + beam.height - 1 || particle.life <= 0) {
           particles.splice(i, 1);
         }
       }); 
