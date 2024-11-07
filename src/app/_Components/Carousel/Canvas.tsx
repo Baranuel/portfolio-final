@@ -90,6 +90,8 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
 
   return (
     <canvas 
+      width={window.innerWidth}
+      height={"500px"}
       ref={canvasRef}
       className="w-full h-full min-h-[300px] absolute top-0 left-0 z-20"
       style={{ imageRendering: 'crisp-edges' }}
