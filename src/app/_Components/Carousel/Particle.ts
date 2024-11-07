@@ -16,13 +16,14 @@ export class Particle {
       const distanceMultiplier = Math.random() * 0.3 + 0.1; // Slower near center
       this.vx = (Math.random() + 0.1) * distanceMultiplier * 3 / 1.5;
       this.vy = (Math.random() - 0.5) * 0.003;
-      this.life = 500;
+      this.life = 600;
       this.color = color;
       this.size = Math.floor(Math.random() * 2.5) + 1.5;
     }
   
     draw(ctx: CanvasRenderingContext2D) {
       ctx.globalCompositeOperation = 'lighter'
+      ctx.globalAlpha = 0.4;
 
       ctx.fillStyle = this.color;
       ctx.fillRect(

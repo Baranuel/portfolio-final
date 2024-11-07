@@ -25,10 +25,9 @@ export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
   const animationFrameRef = useRef<number>();
 
-  const prettyImages = ['pretty_1.png', 'pretty_2.png']
-  const uglyImages = ['ugly_1.png', 'ugly_2.png']
+  const prettyImages = ['pretty_1.png', 'pretty_2.png', 'pretty_3.png', 'pretty_4.png']
+  const uglyImages = ['ugly_1.png', 'ugly_2.png', 'ugly_3.png', 'ugly_4.png']
   
-  const images = [...uglyImages, ...prettyImages]
   
   // Carousel Settings
   const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? (275-8) :(200 - 8);
@@ -94,7 +93,7 @@ export const Carousel = () => {
             animate="animate"
             className="w-max h-full flex items-center cursor-grab gap-[60px] active:cursor-grabbing"
           >
-            {images.map((image, index) => (
+            {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
               <div
                 key={index}
                 id="moving-element"
@@ -106,12 +105,20 @@ export const Carousel = () => {
                   'bg-red-500': version === 'discovered',
                 })}
               >
-                {index}
                 <Image 
                   src={`/${version === 'undiscovered' ? uglyImages[index] : prettyImages[index]}`}
                   alt={`${version} image`}
+                  priority
                   fill
                 />  
+                <div className={cn("absolute top-0 left-0 w-full h-full bg-rose-600  opacity-40",
+                  {
+                    'visible': version === 'undiscovered',
+                    'hidden': version === 'discovered',
+                  })}
+                >
+                  {index}
+                </div>
               </div>
             ))}
           </motion.div>
