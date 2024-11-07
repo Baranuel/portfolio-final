@@ -12,8 +12,17 @@ export const SvgChip = ({isVisible}: {isVisible: boolean}) => {
         <motion.rect 
             animate={{
                 y: isVisible ? -10 : 0,
+                fill: isVisible ? 'rgb(251, 113, 133)' : 'gray'
             }}
-            fill={'gray'}
+            transition={{
+                y: {
+                    duration: 0.2,
+                },
+                fill: {
+                    duration: 0.5,
+                    ease: 'easeInOut'
+                }
+            }}
             stroke={'black'}
             x="40.5" 
             y="38.5" 

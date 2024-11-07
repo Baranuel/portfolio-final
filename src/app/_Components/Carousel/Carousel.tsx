@@ -5,6 +5,7 @@ import { Canvas } from "./Canvas";
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { SvgChip } from "./SvgChip";
+import Image from "next/image";
 
 interface CarouselStripeProps {
   clipPathClass: string;
@@ -24,7 +25,11 @@ export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
   const animationFrameRef = useRef<number>();
 
-
+  const prettyImages = ['pretty_1.png', 'pretty_2.png']
+  const uglyImages = ['ugly_1.png', 'ugly_2.png']
+  
+  const images = [...uglyImages, ...prettyImages]
+  
   // Carousel Settings
   const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? (275-8) :(200 - 8);
   const ANIMATION_DURATION = 25;
@@ -89,19 +94,24 @@ export const Carousel = () => {
             animate="animate"
             className="w-max h-full flex items-center cursor-grab gap-[60px] active:cursor-grabbing"
           >
-            {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
+            {images.map((image, index) => (
               <div
                 key={index}
                 id="moving-element"
-                className={cn("relative rounded-md border-4 border-black",
+                className={cn("relative rounded-md border-4  border-black",
                   `w-[475px] h-[275px]`,
                   `md:w-[300px] md:h-[200px]`,
                   {
-                  'bg-amber-300': version === 'undiscovered',
+                  'bg-blue-300': version === 'undiscovered',
                   'bg-red-500': version === 'discovered',
                 })}
               >
                 {index}
+                <Image 
+                  src={`/${version === 'undiscovered' ? uglyImages[index] : prettyImages[index]}`}
+                  alt={`${version} image`}
+                  fill
+                />  
               </div>
             ))}
           </motion.div>
@@ -111,6 +121,7 @@ export const Carousel = () => {
     Stripe.displayName = 'CarouselStripe'
     return Stripe
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [desktopVariants]);
 
 

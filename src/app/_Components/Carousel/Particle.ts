@@ -14,7 +14,7 @@ export class Particle {
       this.y = y;
       // Randomize initial velocity based on distance from center
       const distanceMultiplier = Math.random() * 0.3 + 0.1; // Slower near center
-      this.vx = (Math.random() + 0.2) * distanceMultiplier * 3 / 1.5;
+      this.vx = (Math.random() + 0.1) * distanceMultiplier * 3 / 1.5;
       this.vy = (Math.random() - 0.5) * 0.003;
       this.life = 500;
       this.color = color;
@@ -22,7 +22,7 @@ export class Particle {
     }
   
     draw(ctx: CanvasRenderingContext2D) {
-      // ctx.globalCompositeOperation = 'lighter'
+      ctx.globalCompositeOperation = 'lighter'
 
       ctx.fillStyle = this.color;
       ctx.fillRect(

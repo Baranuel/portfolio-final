@@ -20,7 +20,7 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
 
   useEffect(() => {
     // Animate particle count based on visibility
-    animate(particleCount, isVisible ? 60 : 0, { // Increased particle count
+    animate(particleCount, isVisible ? 50 : 0, { // Increased particle count
       duration: 0.3,
       ease: "easeInOut"
     });
@@ -57,7 +57,7 @@ export const Canvas = ({isVisible, beamHeight}: {isVisible: boolean, beamHeight:
         const offset = (Math.random() + Math.random() + Math.random()) / 3; // makes particles more concentrated around the center
         const x = centerX + (offset - 0.5) * 2;
 
-        particles.push(new Particle(x, beamStartY + (Math.random() * beam.height) , 'rgba(252, 211, 77, 1)'));
+        particles.push(new Particle(x, beamStartY + (Math.random() * beam.height) , 'rgb(251, 113, 133)'));
       }
       particles.forEach((particle, i) => {
         particle.update(deltaTime);
