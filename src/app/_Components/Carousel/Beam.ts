@@ -4,7 +4,7 @@ export class Beam {
     height: number;
     distance: number;
     opacity: number;
-    constructor(width: number = 4, height: number = 275, distance: number = 40, opacity: number = 1) {
+    constructor(width: number = 10, height: number = 275, distance: number = 10, opacity: number = 1) {
       this.width = width;
       this.height = height;
       this.distance = distance;
@@ -18,10 +18,10 @@ export class Beam {
         centerX + this.distance,
         0
       );
-      gradient.addColorStop(0, 'rgba(252, 211, 77, 1)');
-      gradient.addColorStop(0.1, 'rgba(252, 211, 77, 0.7)');
-      gradient.addColorStop(0.5, 'rgba(255, 255, 255, 1)');
-      gradient.addColorStop(0.6, 'rgba(252, 211, 77, 0.7)');
+
+      
+      gradient.addColorStop(0, 'rgb(34, 211, 238, 5)');
+      gradient.addColorStop(1, 'rgb(14, 165, 233, 0)');
       return gradient;
     }
   
@@ -31,9 +31,9 @@ export class Beam {
     }
   
     draw(ctx: CanvasRenderingContext2D, centerX: number, startY: number, opacity: number) {
-      const gradient = this.createGradient(ctx, centerX)
+      const gradient = this.createGradient(ctx, centerX);
       ctx.fillStyle = gradient;
       ctx.globalAlpha = opacity;
-      ctx.fillRect(centerX - this.width/2 - 5, startY, this.width + this.distance, this.height);
+      ctx.fillRect(centerX - 2, startY , this.distance, this.height);
     }
 }

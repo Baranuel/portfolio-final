@@ -17,47 +17,53 @@ const CAROUSEL_CONFIG = {
     stripes: 2,
     items: 4,
   },
+  images: {
+    pretty: ['pretty_1.png', 'pretty_2.png', 'pretty_3.png', 'pretty_4.png'],
+    ugly: ['ugly_1.png', 'ugly_2.png', 'ugly_3.png', 'ugly_4.png']
+  },
+  animation: {
+    duration: 25,
+    itemGap: 30
+  }
 } as const;
-
-
 
 export const Carousel = () => {
   const [isVisible, setIsVisible] = useState(true);
   const animationFrameRef = useRef<number>();
-
-  const prettyImages = ['pretty_1.png', 'pretty_2.png', 'pretty_3.png', 'pretty_4.png']
-  const uglyImages = ['ugly_1.png', 'ugly_2.png', 'ugly_3.png', 'ugly_4.png']
   
-  
-  // Carousel Settings
-  const BEAM_HEIGHT = typeof window !== 'undefined' && window.innerWidth > 768 ? (275-8) :(200 - 8);
-  const ANIMATION_DURATION = 25;
-  const ITEM_GAP = 60;
-
+  const BEAM_HEIGHT = useMemo(() => (
+    typeof window !== 'undefined' ? 
+      window.innerWidth > 768 ? 267 : (175 - 8) // Pre-calculated height - 8
+      : 267 // Default to desktop size during SSR
+  ), []);
 
   const checkVisibility = useCallback(() => {
-    const elements = document.querySelectorAll('#moving-element');
-    
-    const isOverlapping = Array.from(elements).some(element => {
-      const windowWidth = window.innerWidth;
-      const screenMiddle = windowWidth / 2;
+    const windowWidth = window.innerWidth;
+    const screenMiddle = windowWidth / 2;
+
+    const movingElements = document.querySelectorAll('#moving-element');
+    let isAnyElementVisible = false;
+
+    movingElements.forEach((element) => {
       const rect = element.getBoundingClientRect();
-      const elementLeft = rect.left + 20;
+      const elementLeft = rect.left + 30;
       const elementRight = rect.right;
-      const isOverlapping = elementLeft <= screenMiddle && elementRight >= screenMiddle;
-      return isOverlapping
+      
+      if (elementLeft <= screenMiddle && elementRight >= screenMiddle) {
+        isAnyElementVisible = true;
+      }
     });
 
-    setIsVisible(isOverlapping)
-
-    // Continue the animation loop
+    setIsVisible(isAnyElementVisible);
     animationFrameRef.current = requestAnimationFrame(checkVisibility);
   }, []);
 
-  // // Start checking visibility when component mounts
   useEffect(() => {
-    checkVisibility();
+    const frameId = requestAnimationFrame(checkVisibility);
     return () => {
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -66,84 +72,78 @@ export const Carousel = () => {
 
   const desktopVariants = useMemo(() => ({
     animate: {
-      x: [`calc(-100% - ${ITEM_GAP}px)`, "0"],
+      x: [`calc(-100% - ${CAROUSEL_CONFIG.animation.itemGap}px)`, "0"],
       transition: {
-        duration: ANIMATION_DURATION,
+        duration: CAROUSEL_CONFIG.animation.duration,
         ease: "linear",
         repeat: Infinity,
       },
     },
-  }), [ITEM_GAP, ANIMATION_DURATION]);
+  }), []);
 
-
-
-  const CarouselStripe = useMemo(() => {
-    const Stripe =  ({ clipPathClass, version }: CarouselStripeProps) => (
-      <div
+  const CarouselItem = useCallback(({ version, index }: { version: CarouselStripeProps['version'], index: number }) => (
+    <div
+      id="moving-element"
+      className={cn("relative rounded-md border-4 border-black",
+        "w-[475px] h-[275px]",
+        "md:w-[275px] md:h-[175px]",
+        {
+          'bg-blue-300': version === 'undiscovered',
+          'bg-red-500': version === 'discovered',
+        }
+      )}
+    >
+      <Image 
+        src={`/${version === 'undiscovered' ? CAROUSEL_CONFIG.images.ugly[index] : CAROUSEL_CONFIG.images.pretty[index]}`}
+        alt={`${version} image`}
+        priority
+        fill
+      />  
+      <div 
         className={cn(
-          "absolute top-0 left-0 gap-[60px] whitespace-nowrap w-full h-full flex ",
-          clipPathClass
+          "absolute top-0 left-0 w-full h-full bg-orange-600 opacity-60",
+          version === 'undiscovered' ? 'visible' : 'hidden'
         )}
       >
-        {Array.from({ length: CAROUSEL_CONFIG.itemCounts.stripes }).map((_, i) => (
+        {index}
+      </div>
+    </div>
+  ), []);
+
+  const CarouselStripe = useMemo(() => {
+    const Stripe = ({ clipPathClass, version }: CarouselStripeProps) => (
+      <div className={cn("absolute top-0 left-0 gap-[30px] whitespace-nowrap w-full h-full flex", clipPathClass)}>
+        {Array.from({ length: CAROUSEL_CONFIG.itemCounts.stripes }).map((_, stripeIndex) => (
           <motion.div
-            key={i}
+            key={stripeIndex}
             variants={desktopVariants}
             initial="initial" 
             animate="animate"
-            className="w-max h-full flex items-center cursor-grab gap-[60px] active:cursor-grabbing"
+            className="w-max h-full flex items-center cursor-grab gap-[30px] active:cursor-grabbing"
           >
-            {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, index) => (
-              <div
-                key={index}
-                id="moving-element"
-                className={cn("relative rounded-md border-4  border-black",
-                  `w-[475px] h-[275px]`,
-                  `md:w-[300px] md:h-[200px]`,
-                  {
-                  'bg-blue-300': version === 'undiscovered',
-                  'bg-red-500': version === 'discovered',
-                })}
-              >
-                <Image 
-                  src={`/${version === 'undiscovered' ? uglyImages[index] : prettyImages[index]}`}
-                  alt={`${version} image`}
-                  priority
-                  fill
-                />  
-                <div className={cn("absolute top-0 left-0 w-full h-full bg-rose-600  opacity-40",
-                  {
-                    'visible': version === 'undiscovered',
-                    'hidden': version === 'discovered',
-                  })}
-                >
-                  {index}
-                </div>
-              </div>
+            {Array.from({ length: CAROUSEL_CONFIG.itemCounts.items }).map((_, itemIndex) => (
+              <CarouselItem key={itemIndex} version={version} index={itemIndex} />
             ))}
           </motion.div>
         ))}
       </div>
     );
-    Stripe.displayName = 'CarouselStripe'
-    return Stripe
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [desktopVariants]);
-
+    Stripe.displayName = 'CarouselStripe';
+    return Stripe;
+  }, [CarouselItem, desktopVariants]);
 
   return (
-    <section className={cn("w-full h-[450px] md:h-[400px] py-2 gap-2 bg-white flex flex-col")}>
+    <section className="w-full h-[450px] md:h-[400px] py-2 gap-2 bg-white flex flex-col">
       <h1 
         onClick={() => setIsVisible(!isVisible)} 
-        className={cn("text-4xl text-center font-pixelify  ")}
+        className="text-4xl text-center font-pixelify"
       >
         Process
       </h1>
       <div className="relative h-full flex-1 overflow-hidden">
-      <div className="w-full h-[60px]  relative ">
-        <SvgChip isVisible={isVisible} />
-      </div>
+        <div className="w-full h-[60px] relative">
+          <SvgChip isVisible={isVisible} />
+        </div>
         <Canvas isVisible={isVisible} beamHeight={BEAM_HEIGHT} />
         
         <CarouselStripe
@@ -154,7 +154,6 @@ export const Carousel = () => {
           version='discovered'
           clipPathClass="clip-path-second"
         />
-      
       </div>
     </section>
   );
