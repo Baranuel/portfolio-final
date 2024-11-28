@@ -101,11 +101,11 @@ export const Carousel = () => {
       />  
       <div 
         className={cn(
-          "absolute top-0 left-0 w-full h-full bg-orange-600 opacity-60",
+          "absolute top-0 left-0 w-full h-full  bg-amber-200 flex items-center justify-center text-7xl font-black text-amber-400",
           version === 'undiscovered' ? 'visible' : 'hidden'
         )}
       >
-        {index}
+        {index + 1}
       </div>
     </div>
   ), []);

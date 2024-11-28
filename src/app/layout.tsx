@@ -81,6 +81,9 @@ export default function RootLayout({
       </head>
   
       <body className={cn(inter.variable, pixelify.variable, dmSans.variable, robotoMono.variable)}>
+        <div className='w-full h-12 mt-14 bg-amber-400 flex items-center justify-center text-stone-950'>{ 
+          'Currently under development, might look funny :)'
+         }</div>
         <ProjectPreviewOutPortal />
       <Navigation />
         <ReactQueryProvider>
